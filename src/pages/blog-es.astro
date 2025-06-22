@@ -32,197 +32,232 @@ const posts = filenames
   })
   .sort((a, b) => new Date(b.date).getTime() - new Date(a.date).getTime());
 
-// Get unique categories and tags for filtering
-const allCategories = [...new Set(posts.map(post => post.categories).filter(Boolean))];
+// Get unique tags and categories for filtering
 const allTags = [...new Set(posts.flatMap(post => post.tags))];
+const allCategories = [...new Set(posts.map(post => post.categories))];
 ---
 
-<Layout title="Blog en Español - Javier Villullas">
-  <div class="min-h-screen bg-gradient-to-br from-gray-50 via-blue-50 to-indigo-100">
-    <!-- Header con navegación de idiomas -->
-    <header class="bg-white shadow-lg sticky top-0 z-50">
-      <div class="container mx-auto px-6 py-4">
-        <div class="flex justify-between items-center">
-          <div class="flex items-center space-x-4">
-            <a href="/" class="text-2xl font-bold text-blue-900 hover:text-blue-700 transition-colors">
-              Javier Villullas
-            </a>
-            <span class="text-gray-400">|</span>
-            <h1 class="text-xl font-semibold text-gray-800">Blog en Español</h1>
-          </div>
-          
-          <!-- Language Switcher -->
-          <div class="flex items-center space-x-3">
-            <a href="/blog" class="px-3 py-1 text-sm border border-gray-300 rounded-full hover:bg-gray-100 transition-colors">
-              🇺🇸 English
-            </a>
-            <span class="px-3 py-1 text-sm bg-blue-100 text-blue-800 border border-blue-300 rounded-full font-medium">
-              🇪🇸 Español
-            </span>
-          </div>
+<Layout title="Blog en Español | Javier Villullas - Experto AI-First Azure Cloud" description="Blog técnico sobre IA, Azure Cloud y prácticas modernas de desarrollo de software">
+  
+  <!-- Header with navigation -->
+  <header class="bg-white shadow-lg sticky top-0 z-50">
+    <div class="container mx-auto px-6 py-4">
+      <div class="flex justify-between items-center">
+        <div class="flex items-center space-x-4">
+          <a href="/" class="text-2xl font-bold text-blue-900 hover:text-blue-700 transition-colors">
+            Javier Villullas
+          </a>
+          <span class="text-gray-400">|</span>
+          <h1 class="text-xl font-semibold text-gray-800">Blog Español</h1>
         </div>
-      </div>
-    </header>
-
-    <main class="container mx-auto px-6 py-12">
-      <!-- Hero Section -->
-      <div class="text-center mb-16">
-        <h2 class="text-5xl font-bold text-gray-900 mb-6 bg-gradient-to-r from-blue-600 to-purple-600 bg-clip-text text-transparent">
-          Insights Técnicos y Experiencias
-        </h2>
-        <p class="text-xl text-gray-600 max-w-3xl mx-auto leading-relaxed">
-          Explorando las últimas tendencias en Azure AI, arquitecturas cloud inteligentes, y desarrollo de software. 
-          Compartiendo más de 20 años de experiencia en el mundo de la tecnología.
-        </p>
         
-        <!-- Stats -->
-        <div class="flex justify-center space-x-8 mt-8">
-          <div class="text-center">
-            <div class="text-2xl font-bold text-blue-600">{posts.length}</div>
-            <div class="text-sm text-gray-500">Artículos</div>
-          </div>
-          <div class="text-center">
-            <div class="text-2xl font-bold text-blue-600">{allCategories.length}</div>
-            <div class="text-sm text-gray-500">Categorías</div>
-          </div>
-          <div class="text-center">
-            <div class="text-2xl font-bold text-blue-600">{allTags.length}</div>
-            <div class="text-sm text-gray-500">Etiquetas</div>
-          </div>
+        <!-- Language Switcher -->
+        <div class="flex items-center space-x-3">
+          <a href="/blog" class="px-3 py-1 text-sm border border-gray-300 rounded-full hover:bg-gray-100 transition-colors">
+            🇺🇸 English
+          </a>
+          <span class="px-3 py-1 text-sm bg-blue-100 text-blue-800 border border-blue-300 rounded-full font-medium">
+            🇪🇸 Español
+          </span>
         </div>
       </div>
+    </div>
+  </header>
 
-      <!-- Filters Section -->
-      <div class="mb-12">
-        <div class="bg-white rounded-xl shadow-lg p-6">
-          <h3 class="text-lg font-semibold text-gray-800 mb-4">Filtrar por categorías:</h3>
-          <div class="flex flex-wrap gap-3">
-            <button class="filter-btn active px-4 py-2 rounded-full text-sm font-medium transition-all duration-200" data-category="all">
-              Todas
-            </button>
-            {allCategories.map(category => (
-              <button 
-                class="filter-btn px-4 py-2 rounded-full text-sm font-medium transition-all duration-200" 
-                data-category={category}
-              >
-                {category === 'desarrollo_ia' ? 'Desarrollo IA' :
-                 category === 'arquitectura' ? 'Arquitectura' :
-                 category === 'soluciones_cloud' ? 'Soluciones Cloud' :
-                 category === 'azure_ia' ? 'Azure IA' :
-                 category}
-              </button>
-            ))}
-          </div>
-        </div>
+  <!-- Hero Section -->
+  <section class="bg-gradient-to-br from-blue-900 via-blue-700 to-blue-500 text-white py-20">
+    <div class="container mx-auto px-6 text-center">
+      <h2 class="text-5xl font-bold mb-4 bg-gradient-to-r from-blue-200 to-white bg-clip-text text-transparent">
+        🤖 Insights de IA y Cloud
+      </h2>
+      <p class="text-xl text-blue-200 max-w-3xl mx-auto">
+        Explorando la intersección entre Inteligencia Artificial y Tecnologías Cloud. 
+        Compartiendo insights de más de 20 años construyendo soluciones inteligentes con Azure.
+      </p>
+    </div>
+  </section>
+
+  <!-- Filter Section -->
+  <section class="py-8 bg-white border-b">
+    <div class="container mx-auto px-6">
+      <div class="flex flex-wrap gap-4 justify-center">
+        <button class="filter-btn active bg-blue-600 text-white px-4 py-2 rounded-full font-semibold hover:bg-blue-700 transition-colors" data-filter="all">
+          Todos los Posts ({posts.length})
+        </button>
+        {allCategories.map(category => (
+          <button class="filter-btn bg-gray-200 text-gray-700 px-4 py-2 rounded-full font-semibold hover:bg-blue-100 hover:text-blue-700 transition-colors" data-filter={category}>
+            {category === 'desarrollo_ia' ? 'Desarrollo IA' :
+             category === 'arquitectura' ? 'Arquitectura' :
+             category === 'soluciones_cloud' ? 'Soluciones Cloud' :
+             category === 'azure_ia' ? 'Azure IA' :
+             category}
+          </button>
+        ))}
       </div>
+      
+      <!-- Tags -->
+      <div class="mt-4 flex flex-wrap gap-2 justify-center">
+        <span class="text-gray-600 font-semibold">Etiquetas:</span>
+        {allTags.map(tag => (
+          <button class="tag-btn bg-gray-100 text-gray-600 px-3 py-1 rounded-md text-sm hover:bg-blue-50 hover:text-blue-600 transition-colors" data-tag={tag}>
+            #{tag}
+          </button>
+        ))}
+      </div>
+    </div>
+  </section>
 
-      <!-- Blog Posts Grid -->
-      <div class="grid lg:grid-cols-2 xl:grid-cols-3 gap-8" id="posts-grid">
+  <!-- Blog Posts -->
+  <section class="py-20 bg-gray-50">
+    <div class="container mx-auto px-6">
+      <div id="posts-container" class="grid md:grid-cols-2 lg:grid-cols-3 gap-8 max-w-7xl mx-auto">
         {posts.map(post => (
-          <div class="post-card" data-category={post.categories}>
-            <BlogCard 
+          <div class="post-card" data-category={post.categories} data-tags={post.tags.join(',')}>
+            <BlogCard
               title={post.title}
               description={post.description}
               date={post.date}
-              slug={`/blog-es/${post.slug}`}
               tags={post.tags}
-              readingTime={post.readingTime}
               categories={post.categories}
+              slug={`/blog-es/${post.slug}`}
+              readingTime={post.readingTime}
+              language="es"
             />
           </div>
         ))}
       </div>
-
-      <!-- Empty State -->
-      <div id="no-posts" class="hidden text-center py-16">
-        <div class="text-gray-400 text-6xl mb-4">📝</div>
-        <h3 class="text-xl font-semibold text-gray-600 mb-2">No se encontraron artículos</h3>
-        <p class="text-gray-500">Intenta seleccionar una categoría diferente</p>
-      </div>
-
-      <!-- Newsletter Signup -->
-      <div class="mt-20 bg-gradient-to-r from-blue-600 to-purple-600 rounded-2xl p-8 text-white text-center">
-        <h3 class="text-3xl font-bold mb-4">¿Te gusta el contenido?</h3>
-        <p class="text-xl mb-6 opacity-90">
-          Conecta conmigo en LinkedIn para más insights sobre Azure AI y desarrollo cloud
-        </p>
-        <div class="flex justify-center space-x-4">
-          <a 
-            href="https://www.linkedin.com/in/javiervillullas/" 
-            target="_blank" 
-            rel="noopener noreferrer"
-            class="bg-white text-blue-600 px-6 py-3 rounded-full font-semibold hover:bg-gray-100 transition-colors flex items-center space-x-2"
-          >
-            <svg class="w-5 h-5" fill="currentColor" viewBox="0 0 20 20">
-              <path fill-rule="evenodd" d="M16.338 16.338H13.67V12.16c0-.987-.018-2.256-1.378-2.256-1.379 0-1.597 1.077-1.597 2.193v4.341H7.338V7.22h2.518v1.161h.036c.35-.664 1.206-1.378 2.476-1.378 2.652 0 3.14 1.745 3.14 4.015v4.92Zm-13.67 0H2.668V7.22h2.667v9.118ZM4.001 5.925a1.986 1.986 0 1 1 0-3.972 1.986 1.986 0 0 1 0 3.972Z" clip-rule="evenodd"></path>
-            </svg>
-            <span>Conectar en LinkedIn</span>
-          </a>
-          <a 
-            href="mailto:jvillullas@gmail.com"
-            class="border-2 border-white text-white px-6 py-3 rounded-full font-semibold hover:bg-white hover:text-blue-600 transition-colors"
-          >
-            Contactar
-          </a>
+      
+      <!-- No posts message -->
+      <div id="no-posts" class="hidden text-center py-12">
+        <div class="text-gray-500 text-lg">
+          <span class="text-4xl mb-4 block">📝</span>
+          No se encontraron posts para los filtros seleccionados.
         </div>
       </div>
-    </main>
-  </div>
+    </div>
+  </section>
 
-  <style>
-    .filter-btn {
-      @apply bg-gray-100 text-gray-600 hover:bg-blue-100 hover:text-blue-700;
-    }
-    
-    .filter-btn.active {
-      @apply bg-blue-600 text-white shadow-lg;
-    }
-    
-    .post-card {
-      transition: all 0.3s ease;
-    }
-    
-    .post-card.hidden {
-      display: none;
-    }
-  </style>
+  <!-- Newsletter Section -->
+  <section class="py-16 bg-gradient-to-r from-blue-600 to-blue-800 text-white">
+    <div class="container mx-auto px-6 text-center">
+      <h2 class="text-3xl font-bold mb-4">Mantente Actualizado</h2>
+      <p class="text-xl text-blue-200 mb-8 max-w-2xl mx-auto">
+        Recibe los últimos insights sobre IA, Azure Cloud y arquitectura empresarial directamente en tu bandeja de entrada.
+      </p>
+      <div class="flex justify-center space-x-4">
+        <a 
+          href="https://www.linkedin.com/in/javiervillullas/" 
+          target="_blank" 
+          rel="noopener noreferrer"
+          class="bg-white text-blue-600 px-6 py-3 rounded-full font-semibold hover:bg-gray-100 transition-colors flex items-center space-x-2"
+        >
+          <svg class="w-5 h-5" fill="currentColor" viewBox="0 0 20 20">
+            <path fill-rule="evenodd" d="M16.338 16.338H13.67V12.16c0-.987-.018-2.256-1.378-2.256-1.379 0-1.597 1.077-1.597 2.193v4.341H7.338V7.22h2.518v1.161h.036c.35-.664 1.206-1.378 2.476-1.378 2.652 0 3.14 1.745 3.14 4.015v4.92Zm-13.67 0H2.668V7.22h2.667v9.118ZM4.001 5.925a1.986 1.986 0 1 1 0-3.972 1.986 1.986 0 0 1 0 3.972Z" clip-rule="evenodd"></path>
+          </svg>
+          <span>Conectar en LinkedIn</span>
+        </a>
+        <a 
+          href="mailto:jvillullas@gmail.com"
+          class="border-2 border-white text-white px-6 py-3 rounded-full font-semibold hover:bg-white hover:text-blue-600 transition-colors"
+        >
+          Contactar
+        </a>
+      </div>
+    </div>
+  </section>
 
-  <script>
-    // Filter functionality
-    document.addEventListener('DOMContentLoaded', function() {
-      const filterButtons = document.querySelectorAll('.filter-btn');
-      const postCards = document.querySelectorAll('.post-card');
-      const noPostsMessage = document.getElementById('no-posts');
+</Layout>
 
-      filterButtons.forEach(button => {
-        button.addEventListener('click', function() {
-          const category = this.getAttribute('data-category');
-          
-          // Update active button
-          filterButtons.forEach(btn => btn.classList.remove('active'));
-          this.classList.add('active');
-          
-          // Filter posts
-          let visibleCount = 0;
-          postCards.forEach(card => {
-            const cardCategory = card.getAttribute('data-category');
-            
-            if (category === 'all' || cardCategory === category) {
-              card.classList.remove('hidden');
-              visibleCount++;
-            } else {
-              card.classList.add('hidden');
-            }
-          });
-          
-          // Show/hide no posts message
-          if (visibleCount === 0) {
-            noPostsMessage.classList.remove('hidden');
-          } else {
-            noPostsMessage.classList.add('hidden');
-          }
+<script>
+  // Filter functionality
+  document.addEventListener('DOMContentLoaded', function() {
+    const filterBtns = document.querySelectorAll('.filter-btn');
+    const tagBtns = document.querySelectorAll('.tag-btn');
+    const postCards = document.querySelectorAll('.post-card');
+    const noPostsMsg = document.getElementById('no-posts');
+    const postsContainer = document.getElementById('posts-container');
+
+    let activeFilters = { category: 'all', tag: null };
+
+    function updatePosts() {
+      let visibleCount = 0;
+      
+      postCards.forEach(card => {
+        const cardCategory = card.getAttribute('data-category');
+        const cardTags = card.getAttribute('data-tags').split(',');
+        
+        let showCard = true;
+        
+        // Check category filter
+        if (activeFilters.category !== 'all' && cardCategory !== activeFilters.category) {
+          showCard = false;
+        }
+        
+        // Check tag filter
+        if (activeFilters.tag && !cardTags.includes(activeFilters.tag)) {
+          showCard = false;
+        }
+        
+        if (showCard) {
+          card.style.display = 'block';
+          visibleCount++;
+        } else {
+          card.style.display = 'none';
+        }
+      });
+      
+      // Show/hide no posts message
+      if (visibleCount === 0) {
+        noPostsMsg.classList.remove('hidden');
+        postsContainer.classList.add('hidden');
+      } else {
+        noPostsMsg.classList.add('hidden');
+        postsContainer.classList.remove('hidden');
+      }
+    }
+
+    // Category filter handlers
+    filterBtns.forEach(btn => {
+      btn.addEventListener('click', function() {
+        const filter = this.getAttribute('data-filter');
+        
+        // Update active button
+        filterBtns.forEach(b => {
+          b.classList.remove('active', 'bg-blue-600', 'text-white');
+          b.classList.add('bg-gray-200', 'text-gray-700');
         });
+        this.classList.add('active', 'bg-blue-600', 'text-white');
+        this.classList.remove('bg-gray-200', 'text-gray-700');
+        
+        activeFilters.category = filter;
+        updatePosts();
       });
     });
-  </script>
-</Layout>
+
+    // Tag filter handlers
+    tagBtns.forEach(btn => {
+      btn.addEventListener('click', function() {
+        const tag = this.getAttribute('data-tag');
+        
+        // Toggle tag selection
+        if (activeFilters.tag === tag) {
+          activeFilters.tag = null;
+          this.classList.remove('bg-blue-100', 'text-blue-600');
+          this.classList.add('bg-gray-100', 'text-gray-600');
+        } else {
+          // Clear previous tag selection
+          tagBtns.forEach(b => {
+            b.classList.remove('bg-blue-100', 'text-blue-600');
+            b.classList.add('bg-gray-100', 'text-gray-600');
+          });
+          
+          activeFilters.tag = tag;
+          this.classList.add('bg-blue-100', 'text-blue-600');
+          this.classList.remove('bg-gray-100', 'text-gray-600');
+        }
+        
+        updatePosts();
+      });
+    });
+  });
+</script>

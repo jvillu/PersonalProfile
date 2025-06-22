@@ -115,8 +115,9 @@ const allCategories = [...new Set(posts.map(post => post.categories))];
               date={post.date}
               tags={post.tags}
               categories={post.categories}
-              slug={post.slug}
+              slug={`/blog/${post.slug}`}
               readingTime={post.readingTime}
+              language="en"
             />
           </div>
         ))}
