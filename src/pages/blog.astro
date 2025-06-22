@@ -1,0 +1,222 @@
+---
+import Layout from '../layouts/Layout.astro';
+import BlogCard from '../components/BlogCard.astro';
+import fs from 'fs';
+import path from 'path';
+import matter from 'gray-matter';
+import readingTime from 'reading-time';
+
+// Read all markdown files from _posts directory
+const postsDirectory = path.join(process.cwd(), '_posts');
+const filenames = fs.readdirSync(postsDirectory);
+
+// Parse posts and extract frontmatter
+const posts = filenames
+  .filter(name => name.endsWith('.md'))
+  .map(name => {
+    const fullPath = path.join(postsDirectory, name);
+    const fileContents = fs.readFileSync(fullPath, 'utf8');
+    const { data, content } = matter(fileContents);
+    const stats = readingTime(content);
+    
+    return {
+      slug: name.replace('.md', ''),
+      title: data.title,
+      description: data.description,
+      date: data.date,
+      tags: data.tags || [],
+      categories: data.categories,
+      readingTime: stats.text,
+      content
+    };
+  })
+  .sort((a, b) => new Date(b.date).getTime() - new Date(a.date).getTime());
+
+// Get unique tags and categories for filtering
+const allTags = [...new Set(posts.flatMap(post => post.tags))];
+const allCategories = [...new Set(posts.map(post => post.categories))];
+---
+
+<Layout title="Blog | Javier Villullas - AI-First Azure Cloud Expert" description="Technical blog about AI, Azure Cloud, and modern software development practices">
+  
+  <!-- Hero Section -->
+  <section class="bg-gradient-to-br from-blue-900 via-blue-700 to-blue-500 text-white py-20">
+    <div class="container mx-auto px-6 text-center">
+      <h1 class="text-5xl font-bold mb-4 bg-gradient-to-r from-blue-200 to-white bg-clip-text text-transparent">
+        🤖 AI & Cloud Insights
+      </h1>
+      <p class="text-xl text-blue-200 max-w-3xl mx-auto">
+        Exploring the intersection of Artificial Intelligence and Cloud Technologies. 
+        Sharing insights from 20+ years building intelligent solutions with Azure.
+      </p>
+    </div>
+  </section>
+
+  <!-- Filter Section -->
+  <section class="py-8 bg-white border-b">
+    <div class="container mx-auto px-6">
+      <div class="flex flex-wrap gap-4 justify-center">
+        <button class="filter-btn active bg-blue-600 text-white px-4 py-2 rounded-full font-semibold hover:bg-blue-700 transition-colors" data-filter="all">
+          All Posts ({posts.length})
+        </button>
+        {allCategories.map(category => (
+          <button class="filter-btn bg-gray-200 text-gray-700 px-4 py-2 rounded-full font-semibold hover:bg-blue-100 hover:text-blue-700 transition-colors" data-filter={category}>
+            {category}
+          </button>
+        ))}
+      </div>
+      
+      <!-- Tags -->
+      <div class="mt-4 flex flex-wrap gap-2 justify-center">
+        <span class="text-gray-600 font-semibold">Tags:</span>
+        {allTags.map(tag => (
+          <button class="tag-btn bg-gray-100 text-gray-600 px-3 py-1 rounded-md text-sm hover:bg-blue-50 hover:text-blue-600 transition-colors" data-tag={tag}>
+            #{tag}
+          </button>
+        ))}
+      </div>
+    </div>
+  </section>
+
+  <!-- Blog Posts -->
+  <section class="py-20 bg-gray-50">
+    <div class="container mx-auto px-6">
+      <div id="posts-container" class="grid md:grid-cols-2 lg:grid-cols-3 gap-8 max-w-7xl mx-auto">
+        {posts.map(post => (
+          <div class="post-card" data-category={post.categories} data-tags={post.tags.join(',')}>
+            <BlogCard
+              title={post.title}
+              description={post.description}
+              date={post.date}
+              tags={post.tags}
+              categories={post.categories}
+              slug={post.slug}
+              readingTime={post.readingTime}
+            />
+          </div>
+        ))}
+      </div>
+      
+      <!-- No posts message -->
+      <div id="no-posts" class="hidden text-center py-12">
+        <div class="text-gray-500 text-lg">
+          <span class="text-4xl mb-4 block">📝</span>
+          No posts found for the selected filters.
+        </div>
+      </div>
+    </div>
+  </section>
+
+  <!-- Newsletter Section -->
+  <section class="py-16 bg-gradient-to-r from-blue-600 to-blue-800 text-white">
+    <div class="container mx-auto px-6 text-center">
+      <h2 class="text-3xl font-bold mb-4">Stay Updated</h2>
+      <p class="text-xl text-blue-200 mb-8 max-w-2xl mx-auto">
+        Get the latest insights on AI, Azure Cloud, and enterprise architecture delivered to your inbox.
+      </p>
+      <div class="max-w-md mx-auto flex">
+        <input 
+          type="email" 
+          placeholder="Your email address" 
+          class="flex-1 px-4 py-3 rounded-l-lg text-gray-800 focus:outline-none focus:ring-2 focus:ring-blue-300"
+        >
+        <button class="bg-blue-800 hover:bg-blue-900 px-6 py-3 rounded-r-lg font-semibold transition-colors">
+          Subscribe
+        </button>
+      </div>
+    </div>
+  </section>
+
+</Layout>
+
+<script>
+  // Filter functionality
+  document.addEventListener('DOMContentLoaded', function() {
+    const filterBtns = document.querySelectorAll('.filter-btn');
+    const tagBtns = document.querySelectorAll('.tag-btn');
+    const postCards = document.querySelectorAll('.post-card');
+    const noPostsMsg = document.getElementById('no-posts');
+    
+    let activeFilters = {
+      category: 'all',
+      tag: null
+    };
+    
+    function updatePosts() {
+      let visibleCount = 0;
+      
+      postCards.forEach(card => {
+        const category = card.getAttribute('data-category');
+        const tags = card.getAttribute('data-tags').split(',');
+        
+        let showCard = true;
+        
+        // Filter by category
+        if (activeFilters.category !== 'all' && category !== activeFilters.category) {
+          showCard = false;
+        }
+        
+        // Filter by tag
+        if (activeFilters.tag && !tags.includes(activeFilters.tag)) {
+          showCard = false;
+        }
+        
+        if (showCard) {
+          card.style.display = 'block';
+          visibleCount++;
+        } else {
+          card.style.display = 'none';
+        }
+      });
+      
+      // Show/hide no posts message
+      if (visibleCount === 0) {
+        noPostsMsg.classList.remove('hidden');
+      } else {
+        noPostsMsg.classList.add('hidden');
+      }
+    }
+    
+    // Category filter handlers
+    filterBtns.forEach(btn => {
+      btn.addEventListener('click', function() {
+        // Update active button
+        filterBtns.forEach(b => {
+          b.classList.remove('active', 'bg-blue-600', 'text-white');
+          b.classList.add('bg-gray-200', 'text-gray-700');
+        });
+        this.classList.add('active', 'bg-blue-600', 'text-white');
+        this.classList.remove('bg-gray-200', 'text-gray-700');
+        
+        // Update filter
+        activeFilters.category = this.getAttribute('data-filter');
+        updatePosts();
+      });
+    });
+    
+    // Tag filter handlers
+    tagBtns.forEach(btn => {
+      btn.addEventListener('click', function() {
+        const clickedTag = this.getAttribute('data-tag');
+        
+        if (activeFilters.tag === clickedTag) {
+          // Deselect tag
+          activeFilters.tag = null;
+          this.classList.remove('bg-blue-600', 'text-white');
+          this.classList.add('bg-gray-100', 'text-gray-600');
+        } else {
+          // Select new tag
+          tagBtns.forEach(b => {
+            b.classList.remove('bg-blue-600', 'text-white');
+            b.classList.add('bg-gray-100', 'text-gray-600');
+          });
+          activeFilters.tag = clickedTag;
+          this.classList.add('bg-blue-600', 'text-white');
+          this.classList.remove('bg-gray-100', 'text-gray-600');
+        }
+        
+        updatePosts();
+      });
+    });
+  });
+</script>
