@@ -1,1 +1,159 @@
-hola
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Javier Villullas - Azure Cloud Expert</title>
+    <link href="https://unpkg.com/tailwindcss@^2/dist/tailwind.min.css" rel="stylesheet">
+    <style>
+        /* Custom animations if needed */
+        @keyframes fadeIn {
+            from { opacity: 0; transform: translateY(20px); }
+            to { opacity: 1; transform: translateY(0); }
+        }
+        .animate-fade-in {
+            animation: fadeIn 0.8s ease-out forwards;
+        }
+        @keyframes floatSlow {
+            0% { transform: translateY(0); }
+            50% { transform: translateY(30px); }
+            100% { transform: translateY(0); }
+        }
+        @keyframes floatFast {
+            0% { transform: translateY(0); }
+            50% { transform: translateY(-20px); }
+            100% { transform: translateY(0); }
+        }
+        .animate-float-slow { animation: floatSlow 10s ease-in-out infinite; }
+        .animate-float-fast { animation: floatFast 6s ease-in-out infinite; }
+        /* Add more custom animations as needed */
+    </style>
+</head>
+<body class="font-sans text-gray-800 bg-gray-50">
+
+    <!-- Barra de menú superior -->
+    <nav class="fixed top-0 left-0 w-full z-50 bg-gradient-to-r from-blue-900 via-blue-700 to-blue-400 bg-opacity-90 shadow-lg animate-fade-in">
+        <div class="container mx-auto flex justify-between items-center py-4 px-6">
+            <a href="#" class="text-2xl font-extrabold text-white tracking-widest hover:text-blue-200 transition">Javier Villullas</a>
+            <ul class="flex space-x-8 text-lg font-semibold">
+                <li><a href="#about" class="text-white hover:text-blue-200 transition">Sobre mí</a></li>
+                <li><a href="#experience" class="text-white hover:text-blue-200 transition">Experiencia</a></li>
+                <li><a href="#skills" class="text-white hover:text-blue-200 transition">Skills</a></li>
+                <li><a href="#contact" class="text-white hover:text-blue-200 transition">Contacto</a></li>
+            </ul>
+        </div>
+        <div class="absolute left-0 right-0 h-2 bg-gradient-to-r from-blue-400 via-blue-200 to-blue-400 opacity-60 blur-lg animate-pulse"></div>
+    </nav>
+
+    <!-- Fondo gráfico animado -->
+    <div class="fixed inset-0 -z-10 pointer-events-none">
+        <svg class="absolute top-0 left-0 w-full h-96 opacity-30 animate-float-slow" viewBox="0 0 1440 320"><path fill="#60a5fa" fill-opacity="1" d="M0,160L60,170.7C120,181,240,203,360,197.3C480,192,600,160,720,133.3C840,107,960,85,1080,101.3C1200,117,1320,171,1380,197.3L1440,224L1440,0L1380,0C1320,0,1200,0,1080,0C960,0,840,0,720,0C600,0,480,0,360,0C240,0,120,0,60,0L0,0Z"></path></svg>
+        <svg class="absolute bottom-0 right-0 w-full h-80 opacity-20 animate-float-fast" viewBox="0 0 1440 320"><path fill="#2563eb" fill-opacity="1" d="M0,288L60,272C120,256,240,224,360,197.3C480,171,600,149,720,154.7C840,160,960,192,1080,197.3C1200,203,1320,181,1380,170.7L1440,160L1440,320L1380,320C1320,320,1200,320,1080,320C960,320,840,320,720,320C600,320,480,320,360,320C240,320,120,320,60,320L0,320Z"></path></svg>
+    </div>
+
+    <header class="relative h-screen flex items-center justify-center text-center overflow-hidden bg-cover bg-center" style="background-image: url('profile.jpeg');">
+        <div class="absolute inset-0 bg-black opacity-60"></div>
+        <div class="relative z-10 text-white p-6">
+            <img src="yo.jpeg" alt="Javier Villullas" class="w-40 h-40 rounded-full mx-auto mb-4 object-cover border-4 border-blue-400">
+            <h1 class="text-5xl font-bold mb-2">Javier Villullas</h1>
+            <p class="text-2xl font-light animate-fade-in">Microsoft Azure Cloud Expert</p>
+            <a href="#contact" class="mt-8 inline-block bg-blue-600 hover:bg-blue-700 text-white font-bold py-3 px-8 rounded-full transition duration-300">Contact Me</a>
+        </div>
+    </header>
+
+    <section id="about" class="py-20 bg-white">
+        <div class="container mx-auto px-6">
+            <h2 class="text-4xl font-bold text-center mb-12">About Me</h2>
+            <div class="max-w-3xl mx-auto text-lg leading-relaxed text-center">
+                <p class="mb-4">I am Azure Cloud Expert specialized in Cloud implementations in Microsoft Azure .Net.  Working professionally in the IT sector for more than 20 years in software development.  Microsoft Azure Cloud Expert with Microsoft Net and C#. </p>
+                <p class="mb-4">My expertise includes microservices architecture for containerized .NET applications with Kubernetes and Docker containers,  and Microsoft Azure Cloud based application development (SaaS and PaaS).  I work with various databases including Azure SQL Server, POSTGRE, Azure Cosmos DB, MongoDB, Redis, and Entity Framework ORM. </p>
+                <p>I am proficient in diverse architectures such as CRUD, Clean Architecture, Test-Driven-Development, and Bounded Context (BC) pattern in domain-driven design (DDD).  I am an Agile team member using Scrum methodology with Azure DevOps,  and adept at version management with Git.  My front-end development skills cover JavaScript frameworks like React and Polymer. </p>
+            </div>
+            <div class="mt-10 text-center">
+                <h3 class="text-2xl font-bold mb-4">Education</h3>
+                <p><strong>Computer Engineering</strong> - University of the Basque Country </p>
+                <p><strong>Executive MBA</strong> - ESEUNE Business School in Zamudio Technological Park </p>
+            </div>
+        </div>
+    </section>
+
+    <section id="experience" class="py-20 bg-gray-100">
+        <div class="container mx-auto px-6">
+            <h2 class="text-4xl font-bold text-center mb-12">Experience</h2>
+            <div class="grid grid-cols-1 md:grid-cols-2 gap-8">
+                <div class="bg-white p-6 rounded-lg shadow-lg hover:shadow-xl transition duration-300">
+                    <h3 class="text-2xl font-bold mb-2">Microsoft Azure Cloud Expert - Tokiota</h3>
+                    <p class="text-gray-600 mb-4">marzo de 2022 - Present (3 años 4 meses) </p>
+                    <p class="text-gray-700">Working in an Agile Team as Azure Cloud Expert.  Key technologies include Azure Cloud, AI, C#.Ne, Microservices with Docker-Kubernetes, and Azure DevOps for CI/CD and SCRUM/SAFE Management.  Contributed to improving passenger transport quality for GOAL SYSTEMS through software solutions. </p>
+                </div>
+                <div class="bg-white p-6 rounded-lg shadow-lg hover:shadow-xl transition duration-300">
+                    <h3 class="text-2xl font-bold mb-2">Microsoft.NET Azure Cloud Backend Developer - Ibermática</h3>
+                    <p class="text-gray-600 mb-4">marzo de 2021 - octubre de 2022 (1 año 8 meses) </p>
+                    <p class="text-gray-700">Worked in an Agile Team as Azure Cloud.Net Core Backend Developer.  Utilized Azure Cloud, C#.Net Core, AKS Kubernetes, Microservices with Docker and Rancher, and Azure Pipelines for CI-CD.  Developed microservices for big data monitoring and management for Dorlet Waste. </p>
+                </div>
+                <div class="bg-white p-6 rounded-lg shadow-lg hover:shadow-xl transition duration-300">
+                    <h3 class="text-2xl font-bold mb-2">Microsoft.NET Computer Engineering - Altran</h3>
+                    <p class="text-gray-600 mb-4">marzo de 2019 - marzo de 2021 (2 años 1 mes) </p>
+                    <p class="text-gray-700">Specialized in database expertise and Microsoft.NET Software Engineering, using .NET Framework 3.5 and SQLSERVER.  Worked with Siemens Gamesa in a SAFe 5.0 SCRUM team, creating applications to store and process information from Wind Turbines. </p>
+                </div>
+                <div class="bg-white p-6 rounded-lg shadow-lg hover:shadow-xl transition duration-300">
+                    <h3 class="text-2xl font-bold mb-2">FullStack React & .Net Core & Azure Cloud Developer - Freelance</h3>
+                    <p class="text-gray-600 mb-4">enero de 2015 - marzo de 2019 (4 años 3 meses) </p>
+                    <p class="text-gray-700">Full Stack development of Progressive Web Apps and Cloud implementations in Microsoft Azure Cloud and .NET Core.  Frontend work included ECMAScript, TypeScript, ES6, and JavaScript Frameworks (React, Preact, AngularJS, Polymer). Backend with Web API using Entity Framework, and databases like Microsoft Azure SQL-Server and No-SQL Azure Cosmos DB. </p>
+                </div>
+            </div>
+        </div>
+    </section>
+
+    <section id="skills" class="py-20 bg-white">
+        <div class="container mx-auto px-6">
+            <h2 class="text-4xl font-bold text-center mb-12">Skills & Certifications</h2>
+            <div class="flex flex-wrap justify-center gap-8">
+                <div class="w-full md:w-1/3 p-4 bg-gray-50 rounded-lg shadow-md text-center">
+                    <h3 class="text-2xl font-bold mb-4">Aptitudes principales</h3>
+                    <ul class="list-disc list-inside text-lg">
+                        <li>Inteligencia artificial </li>
+                        <li>Microsoft Azure </li>
+                        <li>.NET Core </li>
+                    </ul>
+                </div>
+                <div class="w-full md:w-1/3 p-4 bg-gray-50 rounded-lg shadow-md text-center">
+                    <h3 class="text-2xl font-bold mb-4">Languages</h3>
+                    <ul class="list-disc list-inside text-lg">
+                        <li>Inglés (Professional Working) </li>
+                    </ul>
+                </div>
+                <div class="w-full md:w-1/3 p-4 bg-gray-50 rounded-lg shadow-md text-center">
+                    <h3 class="text-2xl font-bold mb-4">Certifications</h3>
+                    <ul class="list-disc list-inside text-lg">
+                        <li>Azure AI Engineer Associate </li>
+                        <li>Microsoft Certified Professional in .NET </li>
+                    </ul>
+                </div>
+            </div>
+        </div>
+    </section>
+
+    <section id="contact" class="py-20 bg-gray-800 text-white">
+        <div class="container mx-auto px-6 text-center">
+            <h2 class="text-4xl font-bold mb-12">Get in Touch</h2>
+            <p class="text-lg mb-4">I'm always open to new opportunities and collaborations. Feel free to reach out!</p>
+            <div class="flex flex-col items-center justify-center space-y-4">
+                <a href="mailto:jvillullas@gmail.com" class="text-blue-400 hover:text-blue-300 text-xl flex items-center">
+                    <svg class="w-6 h-6 mr-2" fill="currentColor" viewBox="0 0 20 20"><path d="M2.003 5.884L10 9.882l7.997-3.998A2 2 0 0016 4H4a2 2 0 00-1.997 1.884z"></path><path d="M18 8.118l-8 4-8-4V14a2 2 0 002 2h12a2 2 0 002-2V8.118z"></path></svg>
+                    jvillullas@gmail.com 
+                </a>
+                <a href="https://www.linkedin.com/in/javiervillullas/" target="_blank" rel="noopener noreferrer" class="text-blue-400 hover:text-blue-300 text-xl flex items-center">
+                    <svg class="w-6 h-6 mr-2" fill="currentColor" viewBox="0 0 20 20"><path fill-rule="evenodd" d="M16.338 16.338H13.67V12.16c0-.987-.018-2.256-1.378-2.256-1.379 0-1.597 1.077-1.597 2.193v4.341H7.338V7.22h2.518v1.161h.036c.35-.664 1.206-1.378 2.476-1.378 2.652 0 3.14 1.745 3.14 4.015v4.92Zm-13.67 0H2.668V7.22h2.667v9.118ZM4.001 5.925a1.986 1.986 0 1 1 0-3.972 1.986 1.986 0 0 1 0 3.972Z" clip-rule="evenodd"></svg>
+                    LinkedIn 
+                </a>
+            </div>
+        </div>
+    </section>
+
+    <footer class="py-8 bg-gray-900 text-white text-center text-sm">
+        <p>&copy; 2025 Javier Villullas. All rights reserved.</p>
+    </footer>
+
+</body>
+</html>
