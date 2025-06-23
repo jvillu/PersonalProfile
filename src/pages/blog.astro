@@ -40,7 +40,7 @@ const allCategories = [...new Set(posts.map(post => post.categories))];
 ---
 
 <BlogLayout title="Blog | Javier Villullas - AI-First Azure Cloud Expert" description="Technical blog about AI, Azure Cloud, and modern software development practices">  <!-- Header with navigation -->
-  <header class="bg-white shadow-lg sticky top-0 z-50">
+  <header class="bg-white shadow-lg sticky top-0 z-50 relative">
     <div class="container mx-auto px-6 py-4">
       <div class="flex justify-between items-center">
         <div class="flex items-center space-x-4">
@@ -79,9 +79,8 @@ const allCategories = [...new Set(posts.map(post => post.categories))];
           </button>
         </div>
       </div>
-      
-      <!-- Mobile Menu -->
-      <div id="mobile-menu-blog" class="md:hidden bg-white border-t border-gray-200 mt-4 hidden">
+        <!-- Mobile Menu -->
+      <div id="mobile-menu-blog" class="md:hidden bg-white border-t border-gray-200 absolute top-full left-0 right-0 shadow-lg hidden">
         <nav class="flex flex-col space-y-2 py-4">
           <a href="/#about" class="block text-gray-700 hover:text-blue-600 hover:bg-gray-50 transition-colors py-3 px-4 rounded">About</a>
           <a href="/#experience" class="block text-gray-700 hover:text-blue-600 hover:bg-gray-50 transition-colors py-3 px-4 rounded">Experience</a>
@@ -102,14 +101,13 @@ const allCategories = [...new Set(posts.map(post => post.categories))];
       </div>
     </div>
   </header>
-
   <!-- Hero Section -->
-  <section class="bg-gradient-to-br from-blue-900 via-blue-700 to-blue-500 text-white py-20">
+  <section class="bg-gradient-to-br from-blue-900 via-blue-700 to-blue-500 text-white py-12 md:py-20">
     <div class="container mx-auto px-6 text-center">
-      <h2 class="text-5xl font-bold mb-4 bg-gradient-to-r from-blue-200 to-white bg-clip-text text-transparent">
+      <h2 class="text-3xl md:text-4xl lg:text-5xl font-bold mb-4 bg-gradient-to-r from-blue-200 to-white bg-clip-text text-transparent">
         🤖 AI & Cloud Insights
       </h2>
-      <p class="text-xl text-blue-200 max-w-3xl mx-auto">
+      <p class="text-base md:text-lg lg:text-xl text-blue-200 max-w-3xl mx-auto leading-relaxed">
         Exploring the intersection of Artificial Intelligence and Cloud Technologies. 
         Sharing insights from 20+ years building intelligent solutions with Azure.
       </p>

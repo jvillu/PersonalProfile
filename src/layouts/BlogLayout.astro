@@ -48,8 +48,7 @@ const { title, description = "AI-First Azure Cloud Expert | Javier Villullas" } 
       html {
         scroll-behavior: smooth;
       }
-      
-      /* Custom gradient text */
+        /* Custom gradient text */
       .gradient-text {
         background: linear-gradient(135deg, #3b82f6, #1d4ed8);
         -webkit-background-clip: text;
@@ -78,6 +77,81 @@ const { title, description = "AI-First Azure Cloud Expert | Javier Villullas" } 
       #mobile-menu-blog:not(.hidden),
       #mobile-menu-blog-es:not(.hidden),
       #mobile-menu-post:not(.hidden),
+      #mobile-menu-post-es:not(.hidden) {
+        animation: slideDown 0.3s ease-out forwards;
+      }
+        /* Mobile optimizations */
+      @media (max-width: 768px) {
+        .container {
+          padding-left: 1rem;
+          padding-right: 1rem;
+        }
+        
+        /* Ensure proper spacing on mobile */
+        main {
+          padding-top: 0;
+        }
+        
+        /* Mobile header adjustments */
+        header {
+          position: sticky;
+          top: 0;
+          z-index: 50;
+        }
+        
+        /* Mobile text sizing */
+        .hero-title {
+          font-size: 2rem;
+          line-height: 1.2;
+        }
+        
+        .hero-subtitle {
+          font-size: 1rem;
+          line-height: 1.5;
+        }
+        
+        /* Mobile menu overlay */
+        #mobile-menu-blog,
+        #mobile-menu-blog-es,
+        #mobile-menu-post,
+        #mobile-menu-post-es {
+          z-index: 60;
+        }
+        
+        /* Better mobile spacing */
+        section {
+          padding-left: 1rem;
+          padding-right: 1rem;
+        }
+        
+        /* Prevent horizontal scroll */
+        body {
+          overflow-x: hidden;
+        }
+      }
+      
+      /* Prevent layout shifts */
+      * {
+        box-sizing: border-box;
+      }
+      
+      /* Better mobile touch targets */
+      @media (max-width: 768px) {
+        button, a {
+          min-height: 44px;
+          min-width: 44px;
+          display: flex;
+          align-items: center;
+          justify-content: center;
+        }
+        
+        /* Mobile navigation fixes */
+        .mobile-nav-link {
+          padding: 12px 16px;
+          display: block;
+          text-decoration: none;
+        }
+      }
       #mobile-menu-post-es:not(.hidden) {
         animation: slideDown 0.3s ease-out forwards;
       }

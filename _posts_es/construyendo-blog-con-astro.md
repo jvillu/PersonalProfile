@@ -202,4 +202,4 @@ Y oye, si tienes preguntas sobre la implementación o quieres ver algo específi
 
 ---
 
-*Todo este blog es open source y está disponible en GitHub. Siéntete libre de hacer fork, modificarlo, o simplemente curiosear para ver cómo funciona todo junto.*
+*Todo este blog es open source y está disponible en GitHub en [https://github.com/jvillu/PersonalProfile](https://github.com/jvillu/PersonalProfile). Siéntete libre de hacer fork, modificarlo, o simplemente curiosear para ver cómo funciona todo junto.*

@@ -202,4 +202,4 @@ Happy coding! 🚀
 
 ---
 
-*This entire blog is open source and available on GitHub. Feel free to fork it, modify it, or just poke around to see how everything works together.*
+*This entire blog is open source and available on GitHub at [https://github.com/jvillu/PersonalProfile](https://github.com/jvillu/PersonalProfile). Feel free to fork it, modify it, or just poke around to see how everything works together.*
