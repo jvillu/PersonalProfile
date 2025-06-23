@@ -8,8 +8,14 @@
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
     <title>Javier Villullas - Azure Cloud Expert</title>
-    <link href="https://unpkg.com/tailwindcss@^2/dist/tailwind.min.css" rel="stylesheet">
-    <style>
+    
+    <!-- Favicon -->
+    <link rel="icon" type="image/svg+xml" href="/favicon.svg" />
+    <link rel="icon" type="image/svg+xml" sizes="16x16" href="/favicon-16x16.svg" />
+    <link rel="icon" type="image/svg+xml" sizes="32x32" href="/favicon-32x32.svg" />
+    <link rel="apple-touch-icon" sizes="180x180" href="/apple-touch-icon.svg" />
+    
+    <link href="https://unpkg.com/tailwindcss@^2/dist/tailwind.min.css" rel="stylesheet">    <style>
         /* Custom animations if needed */
         @keyframes fadeIn {
             from { opacity: 0; transform: translateY(20px); }
@@ -36,6 +42,45 @@
             scroll-behavior: smooth;
         }
         
+        /* Mobile menu animations */
+        @keyframes slideDown {
+            from { 
+                opacity: 0; 
+                transform: translateY(-10px); 
+            }
+            to { 
+                opacity: 1; 
+                transform: translateY(0); 
+            }
+        }
+        
+        #mobile-menu:not(.hidden) {
+            animation: slideDown 0.3s ease-out forwards;
+        }
+        
+        /* Responsive padding for mobile */
+        @media (max-width: 768px) {
+            .container {
+                padding-left: 1rem;
+                padding-right: 1rem;
+            }
+            
+            /* Ensure mobile menu is always above other content */
+            #mobile-menu {
+                position: relative;
+                z-index: 60;
+            }
+        }
+        
+        /* Touch targets for mobile */
+        @media (max-width: 768px) {
+            #mobile-menu a {
+                min-height: 44px;
+                display: flex;
+                align-items: center;
+            }
+        }
+        
         /* Custom gradient text */
         .gradient-text {
             background: linear-gradient(135deg, #3b82f6, #1d4ed8);
@@ -52,20 +97,41 @@
         }
     </style>
 </head>
-<body class="font-sans text-gray-800 bg-gray-50">
-
-    <!-- Navigation Bar -->
-    <nav class="fixed top-0 left-0 w-full z-50 bg-gradient-to-r from-blue-900 via-blue-700 to-blue-400 bg-opacity-95 shadow-lg backdrop-blur-sm">
-        <div class="container mx-auto flex justify-between items-center py-4 px-6">
-            <a href="#" class="text-2xl font-extrabold text-white tracking-widest hover:text-blue-200 transition duration-300">Javier Villullas</a>
-            <ul class="flex space-x-8 text-lg font-semibold">
+<body class="font-sans text-gray-800 bg-gray-50">    <!-- Navigation Bar -->
+    <nav class="fixed top-0 left-0 w-full z-50 bg-gradient-to-r from-blue-900 via-blue-700 to-blue-400 bg-opacity-95 shadow-lg backdrop-blur-sm">        <div class="container mx-auto flex justify-between items-center py-4 px-6">
+            <!-- Logo/Brand -->            <a href="#" class="flex items-center hover:opacity-80 transition duration-300">
+                <img src="/logo-name.svg" alt="Javier Villullas" class="h-12 w-auto">
+            </a>
+            
+            <!-- Desktop Menu -->
+            <ul class="hidden md:flex space-x-8 text-lg font-semibold">
                 <li><a href="#about" class="text-white hover:text-blue-200 transition duration-300">About</a></li>
                 <li><a href="#experience" class="text-white hover:text-blue-200 transition duration-300">Experience</a></li>
                 <li><a href="#skills" class="text-white hover:text-blue-200 transition duration-300">Skills</a></li>
                 <li><a href="/blog-es" class="text-white hover:text-blue-200 transition duration-300">Blog</a></li>
                 <li><a href="#contact" class="text-white hover:text-blue-200 transition duration-300">Contact</a></li>
             </ul>
+            
+            <!-- Mobile Menu Button -->
+            <button id="mobile-menu-btn" class="md:hidden text-white hover:text-blue-200 transition duration-300 focus:outline-none">
+                <svg class="w-6 h-6" fill="none" stroke="currentColor" viewBox="0 0 24 24">
+                    <path id="menu-icon" stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M4 6h16M4 12h16M4 18h16"></path>
+                    <path id="close-icon" stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M6 18L18 6M6 6l12 12" class="hidden"></path>
+                </svg>
+            </button>
         </div>
+        
+        <!-- Mobile Menu -->
+        <div id="mobile-menu" class="md:hidden bg-blue-900 bg-opacity-98 backdrop-blur-md border-t border-blue-400 border-opacity-30 hidden">
+            <ul class="flex flex-col space-y-2 p-6">
+                <li><a href="#about" class="block text-white hover:text-blue-200 transition duration-300 py-2 px-4 rounded hover:bg-blue-800 hover:bg-opacity-50">About</a></li>
+                <li><a href="#experience" class="block text-white hover:text-blue-200 transition duration-300 py-2 px-4 rounded hover:bg-blue-800 hover:bg-opacity-50">Experience</a></li>
+                <li><a href="#skills" class="block text-white hover:text-blue-200 transition duration-300 py-2 px-4 rounded hover:bg-blue-800 hover:bg-opacity-50">Skills</a></li>
+                <li><a href="/blog-es" class="block text-white hover:text-blue-200 transition duration-300 py-2 px-4 rounded hover:bg-blue-800 hover:bg-opacity-50">Blog</a></li>
+                <li><a href="#contact" class="block text-white hover:text-blue-200 transition duration-300 py-2 px-4 rounded hover:bg-blue-800 hover:bg-opacity-50">Contact</a></li>
+            </ul>
+        </div>
+        
         <div class="absolute left-0 right-0 h-1 bg-gradient-to-r from-blue-400 via-blue-200 to-blue-400 opacity-70"></div>
     </nav>
 
@@ -362,11 +428,61 @@
                 </a>
             </div>
         </div>
-    </section>
-
-    <footer class="py-8 bg-gray-900 text-white text-center text-sm">
+    </section>    <footer class="py-8 bg-gray-900 text-white text-center text-sm">
         <p>&copy; 2025 Javier Villullas. All rights reserved.</p>
     </footer>
+
+    <!-- Mobile Menu JavaScript -->
+    <script>
+        document.addEventListener('DOMContentLoaded', function() {
+            const mobileMenuBtn = document.getElementById('mobile-menu-btn');
+            const mobileMenu = document.getElementById('mobile-menu');
+            const menuIcon = document.getElementById('menu-icon');
+            const closeIcon = document.getElementById('close-icon');
+            
+            if (mobileMenuBtn && mobileMenu && menuIcon && closeIcon) {
+                mobileMenuBtn.addEventListener('click', function() {
+                    // Toggle mobile menu visibility
+                    mobileMenu.classList.toggle('hidden');
+                    
+                    // Toggle icons
+                    menuIcon.classList.toggle('hidden');
+                    closeIcon.classList.toggle('hidden');
+                });
+                
+                // Close mobile menu when clicking on a link
+                const mobileMenuLinks = mobileMenu.querySelectorAll('a');
+                mobileMenuLinks.forEach(link => {
+                    link.addEventListener('click', function() {
+                        mobileMenu.classList.add('hidden');
+                        menuIcon.classList.remove('hidden');
+                        closeIcon.classList.add('hidden');
+                    });
+                });
+                  // Close mobile menu when clicking outside
+                document.addEventListener('click', function(event) {
+                    const target = event.target as Node;
+                    const isClickInsideMenu = mobileMenu.contains(target);
+                    const isClickOnMenuBtn = mobileMenuBtn.contains(target);
+                    
+                    if (!isClickInsideMenu && !isClickOnMenuBtn && !mobileMenu.classList.contains('hidden')) {
+                        mobileMenu.classList.add('hidden');
+                        menuIcon.classList.remove('hidden');
+                        closeIcon.classList.add('hidden');
+                    }
+                });
+                
+                // Close mobile menu on window resize (when switching to desktop)
+                window.addEventListener('resize', function() {
+                    if (window.innerWidth >= 768) { // md breakpoint
+                        mobileMenu.classList.add('hidden');
+                        menuIcon.classList.remove('hidden');
+                        closeIcon.classList.add('hidden');
+                    }
+                });
+            }
+        });
+    </script>
 
 </body>
 </html>
