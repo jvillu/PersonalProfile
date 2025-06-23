@@ -32,6 +32,8 @@ jobs:
           path: . # The root location of your Astro project inside the repository.
           node-version: 20 # The specific version of Node that should be used to build your site.
           package-manager: npm@latest # The Node package manager that should be used to install dependencies and build your site.
+        env:
+          CUSTOM_DOMAIN: ${{ secrets.CUSTOM_DOMAIN }} # Set this to 'true' in repository secrets if using custom domain
 
   deploy:
     environment:

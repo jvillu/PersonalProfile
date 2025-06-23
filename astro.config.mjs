@@ -9,7 +9,7 @@ export default defineConfig({
       wrap: true
     }
   },
-  site: 'https://jvillullas.github.io',
-  base: '/PersonalProfile',
+  site: process.env.CUSTOM_DOMAIN ? 'https://javiervillullas.es' : 'https://jvillullas.github.io',
+  base: process.env.CUSTOM_DOMAIN ? '/' : (process.env.NODE_ENV === 'production' ? '/PersonalProfile' : '/'),
   output: 'static'
 });
