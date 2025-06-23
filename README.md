@@ -54,16 +54,6 @@ featured_image_alt: "Texto alternativo para accesibilidad"
 
 ## 🛠️ Configuración Técnica
 
-### Astro Config
-```javascript
-export default defineConfig({
-  integrations: [tailwind()],
-  site: process.env.CUSTOM_DOMAIN ? 'https://javiervillullas.es' : 'https://jvillullas.github.io',
-  base: process.env.CUSTOM_DOMAIN ? '/' : (process.env.NODE_ENV === 'production' ? '/PersonalProfile' : '/'),
-  output: 'static'
-});
-```
-
 ### Enrutado Dinámico
 - **Inglés**: `/blog/[slug].astro` → lee archivos de `_posts/`
 - **Español**: `/blog-es/[slug].astro` → lee archivos de `_posts_es/`
