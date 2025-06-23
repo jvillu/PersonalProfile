@@ -1,0 +1,177 @@
+<svg viewBox="0 0 800 400" xmlns="http://www.w3.org/2000/svg">
+  <defs>
+    <!-- Gradients -->
+    <linearGradient id="astroGradient" x1="0%" y1="0%" x2="100%" y2="100%">
+      <stop offset="0%" style="stop-color:#FF5D01;stop-opacity:1" />
+      <stop offset="100%" style="stop-color:#FF1639;stop-opacity:1" />
+    </linearGradient>
+    
+    <linearGradient id="codeGradient" x1="0%" y1="0%" x2="100%" y2="100%">
+      <stop offset="0%" style="stop-color:#4F46E5;stop-opacity:1" />
+      <stop offset="100%" style="stop-color:#7C3AED;stop-opacity:1" />
+    </linearGradient>
+    
+    <linearGradient id="backgroundGradient" x1="0%" y1="0%" x2="100%" y2="100%">
+      <stop offset="0%" style="stop-color:#0F172A;stop-opacity:1" />
+      <stop offset="100%" style="stop-color:#1E293B;stop-opacity:1" />
+    </linearGradient>
+    
+    <!-- Arrow marker -->
+    <marker id="arrowhead" markerWidth="10" markerHeight="7" refX="9" refY="3.5" orient="auto">
+      <polygon points="0 0, 10 3.5, 0 7" fill="#60A5FA"/>
+    </marker>
+  </defs>
+  
+  <!-- Background -->
+  <rect width="800" height="400" fill="url(#backgroundGradient)"/>
+  
+  <!-- Grid pattern -->
+  <defs>
+    <pattern id="grid" width="40" height="40" patternUnits="userSpaceOnUse">
+      <path d="M 40 0 L 0 0 0 40" fill="none" stroke="#334155" stroke-width="1" opacity="0.3"/>
+    </pattern>
+  </defs>
+  <rect width="800" height="400" fill="url(#grid)"/>
+  
+  <!-- Title -->
+  <text x="400" y="30" text-anchor="middle" font-family="Arial, sans-serif" font-size="22" font-weight="bold" fill="#F1F5F9">Building with Astro</text>
+  
+  <!-- Astro Logo -->
+  <g transform="translate(80, 70)">
+    <polygon points="30,0 55,45 5,45" fill="url(#astroGradient)"/>
+    <circle cx="30" cy="30" r="5" fill="white"/>
+    <text x="30" y="65" text-anchor="middle" font-family="Arial, sans-serif" font-size="12" fill="#E2E8F0">Astro</text>
+  </g>
+  
+  <!-- Code Editor Window -->
+  <g transform="translate(200, 60)">
+    <!-- Window -->
+    <rect x="0" y="0" width="380" height="280" rx="8" fill="#1E293B" stroke="#475569" stroke-width="2"/>
+    
+    <!-- Title bar -->
+    <rect x="0" y="0" width="380" height="35" rx="8" fill="#334155"/>
+    <rect x="0" y="27" width="380" height="8" fill="#334155"/>
+    
+    <!-- Window controls -->
+    <circle cx="20" cy="17" r="5" fill="#EF4444"/>
+    <circle cx="40" cy="17" r="5" fill="#F59E0B"/>
+    <circle cx="60" cy="17" r="5" fill="#10B981"/>
+    
+    <!-- File tabs -->
+    <rect x="90" y="8" width="80" height="20" rx="3" fill="#1E293B"/>
+    <text x="130" y="20" text-anchor="middle" font-family="monospace" font-size="10" fill="#E2E8F0">post.md</text>
+    
+    <!-- Editor content -->
+    <g transform="translate(15, 50)">
+      <!-- Frontmatter section -->
+      <rect x="0" y="0" width="350" height="80" fill="#0F172A" rx="4" stroke="#475569" stroke-width="1"/>
+      <text x="10" y="15" font-family="monospace" font-size="10" fill="#94A3B8">---</text>
+      <text x="10" y="30" font-family="monospace" font-size="10" fill="#F59E0B">title:</text>
+      <text x="60" y="30" font-family="monospace" font-size="10" fill="#10B981">"Building with Astro"</text>
+      <text x="10" y="45" font-family="monospace" font-size="10" fill="#F59E0B">date:</text>
+      <text x="60" y="45" font-family="monospace" font-size="10" fill="#10B981">"2025-06-23"</text>
+      <text x="10" y="60" font-family="monospace" font-size="10" fill="#F59E0B">tags:</text>
+      <text x="60" y="60" font-family="monospace" font-size="10" fill="#10B981">["astro", "blog"]</text>
+      <text x="10" y="75" font-family="monospace" font-size="10" fill="#94A3B8">---</text>
+      
+      <!-- Markdown content -->
+      <text x="10" y="100" font-family="monospace" font-size="10" fill="#60A5FA"># How I Built This Blog</text>
+      <rect x="10" y="110" width="200" height="2" fill="#64748B"/>
+      <rect x="10" y="120" width="180" height="2" fill="#64748B"/>
+      <rect x="10" y="130" width="220" height="2" fill="#64748B"/>
+      
+      <text x="10" y="150" font-family="monospace" font-size="10" fill="#60A5FA">## Why Astro?</text>
+      <rect x="10" y="160" width="250" height="2" fill="#64748B"/>
+      <rect x="10" y="170" width="190" height="2" fill="#64748B"/>
+      
+      <text x="10" y="190" font-family="monospace" font-size="10" fill="#A78BFA">```javascript</text>
+      <rect x="10" y="200" width="170" height="2" fill="url(#codeGradient)"/>
+      <rect x="10" y="210" width="140" height="2" fill="url(#codeGradient)"/>
+      <text x="10" y="225" font-family="monospace" font-size="10" fill="#A78BFA">```</text>
+    </g>
+  </g>
+  
+  <!-- File structure -->
+  <g transform="translate(50, 200)">
+    <rect x="0" y="0" width="120" height="160" fill="#1E293B" rx="6" stroke="#475569" stroke-width="1"/>
+    <text x="60" y="15" text-anchor="middle" font-family="Arial, sans-serif" font-size="10" fill="#E2E8F0" font-weight="bold">Project Structure</text>
+    
+    <!-- Folder icons and files -->
+    <g fill="#64748B" font-family="monospace" font-size="8">
+      <text x="10" y="35">📁 _posts/</text>
+      <text x="15" y="48">📄 post-1.md</text>
+      <text x="15" y="58">📄 post-2.md</text>
+      
+      <text x="10" y="75">📁 _posts_es/</text>
+      <text x="15" y="88">📄 post-1.md</text>
+      <text x="15" y="98">📄 post-2.md</text>
+      
+      <text x="10" y="115">📁 src/</text>
+      <text x="15" y="128">📁 pages/</text>
+      <text x="15" y="138">📁 layouts/</text>
+      <text x="15" y="148">📁 components/</text>
+    </g>
+  </g>
+  
+  <!-- Process arrows -->
+  <path d="M 170 180 Q 190 160 200 180" stroke="#60A5FA" stroke-width="2" fill="none" marker-end="url(#arrowhead)"/>
+  <text x="175" y="155" font-family="Arial, sans-serif" font-size="9" fill="#60A5FA">Markdown</text>
+  
+  <!-- Output website -->
+  <g transform="translate(600, 120)">
+    <rect x="0" y="0" width="140" height="200" rx="8" fill="#FFFFFF" stroke="#E5E7EB" stroke-width="2"/>
+    
+    <!-- Browser bar -->
+    <rect x="0" y="0" width="140" height="25" rx="8" fill="#F3F4F6"/>
+    <rect x="0" y="17" width="140" height="8" fill="#F3F4F6"/>
+    <circle cx="15" cy="12" r="3" fill="#EF4444"/>
+    <circle cx="25" cy="12" r="3" fill="#F59E0B"/>
+    <circle cx="35" cy="12" r="3" fill="#10B981"/>
+    
+    <!-- URL bar -->
+    <rect x="50" y="7" width="80" height="10" rx="5" fill="#E5E7EB"/>
+    <text x="55" y="14" font-family="monospace" font-size="6" fill="#6B7280">blog/astro-post</text>
+    
+    <!-- Website content -->
+    <text x="70" y="45" text-anchor="middle" font-family="Arial, sans-serif" font-size="10" fill="#1F2937" font-weight="bold">My Blog</text>
+    
+    <rect x="10" y="55" width="120" height="40" fill="#F3F4F6" rx="4"/>
+    <text x="70" y="70" text-anchor="middle" font-family="Arial, sans-serif" font-size="8" fill="#374151">How I Built This</text>
+    <text x="70" y="80" text-anchor="middle" font-family="Arial, sans-serif" font-size="8" fill="#374151">Blog with Astro</text>
+    <text x="70" y="90" text-anchor="middle" font-family="Arial, sans-serif" font-size="6" fill="#6B7280">June 23, 2025</text>
+    
+    <rect x="10" y="105" width="120" height="2" fill="#E5E7EB"/>
+    <rect x="10" y="115" width="100" height="2" fill="#E5E7EB"/>
+    <rect x="10" y="125" width="110" height="2" fill="#E5E7EB"/>
+    <rect x="10" y="135" width="90" height="2" fill="#E5E7EB"/>
+    
+    <!-- Performance indicators -->
+    <g transform="translate(10, 150)">
+      <rect x="0" y="0" width="30" height="35" rx="3" fill="#059669"/>
+      <text x="15" y="15" text-anchor="middle" font-family="Arial, sans-serif" font-size="8" fill="white" font-weight="bold">100</text>
+      <text x="15" y="25" text-anchor="middle" font-family="Arial, sans-serif" font-size="6" fill="white">Perf</text>
+      
+      <rect x="35" y="0" width="30" height="35" rx="3" fill="#059669"/>
+      <text x="50" y="15" text-anchor="middle" font-family="Arial, sans-serif" font-size="8" fill="white" font-weight="bold">100</text>
+      <text x="50" y="25" text-anchor="middle" font-family="Arial, sans-serif" font-size="6" fill="white">SEO</text>
+      
+      <rect x="70" y="0" width="30" height="35" rx="3" fill="#059669"/>
+      <text x="85" y="15" text-anchor="middle" font-family="Arial, sans-serif" font-size="8" fill="white" font-weight="bold">100</text>
+      <text x="85" y="25" text-anchor="middle" font-family="Arial, sans-serif" font-size="6" fill="white">A11y</text>
+      
+      <rect x="105" y="0" width="30" height="35" rx="3" fill="#059669"/>
+      <text x="120" y="15" text-anchor="middle" font-family="Arial, sans-serif" font-size="8" fill="white" font-weight="bold">100</text>
+      <text x="120" y="25" text-anchor="middle" font-family="Arial, sans-serif" font-size="6" fill="white">BP</text>
+    </g>
+  </g>
+  
+  <!-- Process arrow to output -->
+  <path d="M 580 200 Q 590 180 600 200" stroke="#10B981" stroke-width="2" fill="none" marker-end="url(#arrowhead)"/>
+  <text x="570" y="175" font-family="Arial, sans-serif" font-size="9" fill="#10B981">Fast Site</text>
+  
+  <!-- Features callouts -->
+  <g transform="translate(250, 350)">
+    <rect x="0" y="0" width="300" height="30" rx="15" fill="#1E293B" stroke="#475569" stroke-width="1"/>
+    <text x="150" y="20" text-anchor="middle" font-family="Arial, sans-serif" font-size="11" fill="#E2E8F0">Markdown + Frontmatter + Zero JS + Lightning Fast</text>
+  </g>
+</svg>

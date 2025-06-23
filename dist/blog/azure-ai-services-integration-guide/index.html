@@ -1,0 +1,642 @@
+<!DOCTYPE html><html lang="en" data-astro-cid-sckkx6r4> <head><meta charset="UTF-8"><meta name="description" content="Complete guide to integrating Azure AI services in production applications, with practical examples and best practices."><meta name="viewport" content="width=device-width, initial-scale=1.0"><link rel="icon" type="image/svg+xml" href="/favicon.svg"><title>Azure AI Services Integration Guide: From Setup to Production | Javier Villullas</title><link href="https://unpkg.com/tailwindcss@^2/dist/tailwind.min.css" rel="stylesheet"><link rel="stylesheet" href="/_astro/blog-es.BTa0XMOX.css">
+<style>@keyframes fadeIn{0%{opacity:0;transform:translateY(20px)}to{opacity:1;transform:translateY(0)}}.animate-fade-in[data-astro-cid-sckkx6r4]{animation:fadeIn .8s ease-out forwards}@keyframes floatSlow{0%{transform:translateY(0)}50%{transform:translateY(30px)}to{transform:translateY(0)}}@keyframes floatFast{0%{transform:translateY(0)}50%{transform:translateY(-20px)}to{transform:translateY(0)}}.animate-float-slow[data-astro-cid-sckkx6r4]{animation:floatSlow 10s ease-in-out infinite}.animate-float-fast[data-astro-cid-sckkx6r4]{animation:floatFast 6s ease-in-out infinite}html{scroll-behavior:smooth}.gradient-text[data-astro-cid-sckkx6r4]{background:linear-gradient(135deg,#3b82f6,#1d4ed8);-webkit-background-clip:text;-webkit-text-fill-color:transparent;background-clip:text}.glass[data-astro-cid-sckkx6r4]{background:#ffffff1a;-webkit-backdrop-filter:blur(10px);backdrop-filter:blur(10px);border:1px solid rgba(255,255,255,.2)}
+.prose[data-astro-cid-4sn4zg3r]{--tw-prose-body: #374151;--tw-prose-headings: #111827;--tw-prose-lead: #4b5563;--tw-prose-links: #2563eb;--tw-prose-bold: #111827;--tw-prose-counters: #6b7280;--tw-prose-bullets: #d1d5db;--tw-prose-hr: #e5e7eb;--tw-prose-quotes: #111827;--tw-prose-quote-borders: #e5e7eb;--tw-prose-captions: #6b7280;--tw-prose-code: #111827;--tw-prose-pre-code: #e5e7eb;--tw-prose-pre-bg: #1f2937;--tw-prose-th-borders: #d1d5db;--tw-prose-td-borders: #e5e7eb}.prose[data-astro-cid-4sn4zg3r] pre[data-astro-cid-4sn4zg3r]{background-color:#1f2937;color:#e5e7eb;border-radius:.5rem;padding:1rem;overflow-x:auto}.prose[data-astro-cid-4sn4zg3r] code[data-astro-cid-4sn4zg3r]{background-color:#f3f4f6;padding:.25rem .375rem;border-radius:.25rem;font-size:.875em}.prose[data-astro-cid-4sn4zg3r] pre[data-astro-cid-4sn4zg3r] code[data-astro-cid-4sn4zg3r]{background-color:transparent;padding:0}.prose[data-astro-cid-4sn4zg3r] h1[data-astro-cid-4sn4zg3r],.prose[data-astro-cid-4sn4zg3r] h2[data-astro-cid-4sn4zg3r],.prose[data-astro-cid-4sn4zg3r] h3[data-astro-cid-4sn4zg3r],.prose[data-astro-cid-4sn4zg3r] h4[data-astro-cid-4sn4zg3r]{margin-top:2rem;margin-bottom:1rem}.prose[data-astro-cid-4sn4zg3r] h2[data-astro-cid-4sn4zg3r]{border-bottom:2px solid #e5e7eb;padding-bottom:.5rem}
+</style></head> <body class="font-sans text-gray-800 bg-gray-50" data-astro-cid-sckkx6r4> <!-- Navigation Bar --> <nav class="fixed top-0 left-0 w-full z-50 bg-gradient-to-r from-blue-900 via-blue-700 to-blue-400 bg-opacity-95 shadow-lg backdrop-blur-sm" data-astro-cid-sckkx6r4> <div class="container mx-auto flex justify-between items-center py-4 px-6" data-astro-cid-sckkx6r4> <a href="/" class="text-2xl font-extrabold text-white tracking-widest hover:text-blue-200 transition duration-300" data-astro-cid-sckkx6r4>Javier Villullas</a> <ul class="flex space-x-8 text-lg font-semibold" data-astro-cid-sckkx6r4> <li data-astro-cid-sckkx6r4><a href="/#about" class="text-white hover:text-blue-200 transition duration-300" data-astro-cid-sckkx6r4>About</a></li> <li data-astro-cid-sckkx6r4><a href="/#experience" class="text-white hover:text-blue-200 transition duration-300" data-astro-cid-sckkx6r4>Experience</a></li> <li data-astro-cid-sckkx6r4><a href="/#skills" class="text-white hover:text-blue-200 transition duration-300" data-astro-cid-sckkx6r4>Skills</a></li> <li data-astro-cid-sckkx6r4><a href="/blog" class="text-blue-200 border-b-2 border-blue-200 transition duration-300" data-astro-cid-sckkx6r4>Blog</a></li> <li data-astro-cid-sckkx6r4><a href="/#contact" class="text-white hover:text-blue-200 transition duration-300" data-astro-cid-sckkx6r4>Contact</a></li> </ul> </div> <div class="absolute left-0 right-0 h-1 bg-gradient-to-r from-blue-400 via-blue-200 to-blue-400 opacity-70" data-astro-cid-sckkx6r4></div> </nav> <!-- Animated Background --> <div class="fixed inset-0 -z-10 pointer-events-none" data-astro-cid-sckkx6r4> <svg class="absolute top-0 left-0 w-full h-96 opacity-20 animate-float-slow" viewBox="0 0 1440 320" data-astro-cid-sckkx6r4> <path fill="#60a5fa" fill-opacity="1" d="M0,160L60,170.7C120,181,240,203,360,197.3C480,192,600,160,720,133.3C840,107,960,85,1080,101.3C1200,117,1320,171,1380,197.3L1440,224L1440,0L1380,0C1320,0,1200,0,1080,0C960,0,840,0,720,0C600,0,480,0,360,0C240,0,120,0,60,0L0,0Z" data-astro-cid-sckkx6r4></path> </svg> <svg class="absolute bottom-0 right-0 w-full h-80 opacity-15 animate-float-fast" viewBox="0 0 1440 320" data-astro-cid-sckkx6r4> <path fill="#2563eb" fill-opacity="1" d="M0,288L60,272C120,256,240,224,360,197.3C480,171,600,149,720,154.7C840,160,960,192,1080,197.3C1200,203,1320,181,1380,170.7L1440,160L1440,320L1380,320C1320,320,1200,320,1080,320C960,320,840,320,720,320C600,320,480,320,360,320C240,320,120,320,60,320L0,320Z" data-astro-cid-sckkx6r4></path> </svg> </div> <main class="pt-20" data-astro-cid-sckkx6r4>  <div class="min-h-screen bg-gradient-to-br from-gray-50 via-blue-50 to-indigo-100" data-astro-cid-4sn4zg3r> <!-- Header with navigation --> <header class="bg-white shadow-lg sticky top-0 z-50" data-astro-cid-4sn4zg3r> <div class="container mx-auto px-6 py-4" data-astro-cid-4sn4zg3r> <div class="flex justify-between items-center" data-astro-cid-4sn4zg3r> <div class="flex items-center space-x-4" data-astro-cid-4sn4zg3r> <a href="/" class="text-2xl font-bold text-blue-900 hover:text-blue-700 transition-colors" data-astro-cid-4sn4zg3r>
+Javier Villullas
+</a> <span class="text-gray-400" data-astro-cid-4sn4zg3r>|</span> <a href="/blog" class="text-blue-600 hover:text-blue-800 font-medium" data-astro-cid-4sn4zg3r>
+← Back to Blog
+</a> </div> <!-- Language Switcher --> <div class="flex items-center space-x-3" data-astro-cid-4sn4zg3r> <span class="px-3 py-1 text-sm bg-blue-100 text-blue-800 border border-blue-300 rounded-full font-medium" data-astro-cid-4sn4zg3r>
+🇺🇸 English Blog
+</span> <a href="/blog-es" class="px-3 py-1 text-sm border border-gray-300 rounded-full hover:bg-gray-100 transition-colors" data-astro-cid-4sn4zg3r>
+🇪🇸 Blog Español
+</a> </div> </div> </div> </header> <!-- Hero Section --> <section class="relative h-96 md:h-[500px] overflow-hidden" data-astro-cid-4sn4zg3r> <!-- Hero Image --> <div class="absolute inset-0" data-astro-cid-4sn4zg3r> <img src="/images/blog/azure-ai-services-integration.svg" alt="Azure AI Services dashboard showing Computer Vision, Language Understanding, Speech Services, and Machine Learning Studio" class="w-full h-full object-cover" data-astro-cid-4sn4zg3r> <div class="absolute inset-0 bg-gradient-to-r from-blue-900/80 via-blue-700/70 to-blue-500/60" data-astro-cid-4sn4zg3r></div> </div> <!-- Content Overlay --> <div class="relative z-10 container mx-auto px-6 h-full flex items-center" data-astro-cid-4sn4zg3r> <div class="max-w-4xl mx-auto text-center text-white" data-astro-cid-4sn4zg3r> <!-- Category Badge --> <div class="mb-4" data-astro-cid-4sn4zg3r> <span class="bg-blue-100 text-blue-800 text-sm font-semibold px-4 py-2 rounded-full" data-astro-cid-4sn4zg3r> azure_ai </span> </div> <!-- Title --> <h1 class="text-4xl md:text-5xl lg:text-6xl font-bold mb-4 leading-tight" data-astro-cid-4sn4zg3r> Azure AI Services Integration Guide: From Setup to Production </h1> <!-- Description --> <p class="text-xl md:text-2xl text-blue-100 mb-6 max-w-3xl mx-auto" data-astro-cid-4sn4zg3r> Complete guide to integrating Azure AI services in production applications, with practical examples and best practices. </p> <!-- Meta Information --> <div class="flex flex-wrap justify-center items-center gap-6 text-blue-200" data-astro-cid-4sn4zg3r> <div class="flex items-center space-x-2" data-astro-cid-4sn4zg3r> <svg class="w-5 h-5" fill="currentColor" viewBox="0 0 20 20" data-astro-cid-4sn4zg3r> <path fill-rule="evenodd" d="M6 2a1 1 0 00-1 1v1H4a2 2 0 00-2 2v10a2 2 0 002 2h12a2 2 0 002-2V6a2 2 0 00-2-2h-1V3a1 1 0 10-2 0v1H7V3a1 1 0 00-1-1zm0 5a1 1 0 000 2h8a1 1 0 100-2H6z" clip-rule="evenodd" data-astro-cid-4sn4zg3r></path> </svg> <time datetime="2025-06-15" data-astro-cid-4sn4zg3r> June 15, 2025 </time> </div> <div class="flex items-center space-x-2" data-astro-cid-4sn4zg3r> <svg class="w-5 h-5" fill="currentColor" viewBox="0 0 20 20" data-astro-cid-4sn4zg3r> <path fill-rule="evenodd" d="M10 18a8 8 0 100-16 8 8 0 000 16zm1-12a1 1 0 10-2 0v4a1 1 0 00.293.707l2.828 2.829a1 1 0 101.415-1.415L11 9.586V6z" clip-rule="evenodd" data-astro-cid-4sn4zg3r></path> </svg> <span data-astro-cid-4sn4zg3r>9 min read</span> </div> </div> </div> </div> </section> <!-- Article Content --> <article class="py-16 bg-white" data-astro-cid-4sn4zg3r> <div class="container mx-auto px-6" data-astro-cid-4sn4zg3r> <div class="max-w-4xl mx-auto" data-astro-cid-4sn4zg3r> <!-- Article Content --> <div class="prose prose-lg prose-blue max-w-none" data-astro-cid-4sn4zg3r> <h1>Azure AI Services Integration Guide: From Setup to Production</h1>
+<p>Azure AI Services provide powerful pre-built AI capabilities that can transform your applications without requiring deep machine learning expertise. In this comprehensive guide, I&#39;ll walk you through integrating these services in production environments, sharing lessons learned from real-world implementations.</p>
+<h2>Overview of Azure AI Services</h2>
+<p>Azure AI Services (formerly Cognitive Services) offer ready-to-use AI capabilities across several domains:</p>
+<h3>Language Services</h3>
+<ul>
+<li><strong>Text Analytics</strong>: Sentiment analysis, key phrase extraction, language detection</li>
+<li><strong>Translator</strong>: Real-time text translation across 100+ languages</li>
+<li><strong>Language Understanding (LUIS)</strong>: Natural language understanding for your apps</li>
+<li><strong>Azure OpenAI</strong>: GPT models for advanced language tasks</li>
+</ul>
+<h3>Vision Services</h3>
+<ul>
+<li><strong>Computer Vision</strong>: Image analysis, OCR, object detection</li>
+<li><strong>Face API</strong>: Face detection, recognition, and analysis</li>
+<li><strong>Custom Vision</strong>: Train custom image classification models</li>
+</ul>
+<h3>Speech Services</h3>
+<ul>
+<li><strong>Speech-to-Text</strong>: Convert spoken audio to text</li>
+<li><strong>Text-to-Speech</strong>: Generate natural-sounding speech</li>
+<li><strong>Speech Translation</strong>: Real-time speech translation</li>
+</ul>
+<h3>Decision Services</h3>
+<ul>
+<li><strong>Anomaly Detector</strong>: Identify anomalies in time series data</li>
+<li><strong>Content Moderator</strong>: Automated content moderation</li>
+</ul>
+<h2>Setting Up Azure AI Services</h2>
+<h3>1. Resource Creation and Configuration</h3>
+<pre><code class="language-bash"># Create resource group
+az group create --name &quot;ai-services-rg&quot; --location &quot;East US&quot;
+
+# Create multi-service cognitive services resource
+az cognitiveservices account create \
+  --name &quot;my-ai-services&quot; \
+  --resource-group &quot;ai-services-rg&quot; \
+  --kind &quot;CognitiveServices&quot; \
+  --sku &quot;S0&quot; \
+  --location &quot;East US&quot;
+
+# Get keys
+az cognitiveservices account keys list \
+  --name &quot;my-ai-services&quot; \
+  --resource-group &quot;ai-services-rg&quot;
+</code></pre>
+<h3>2. Configuration Management</h3>
+<pre><code class="language-csharp">public class AzureAIConfiguration
+{
+    public string Endpoint { get; set; }
+    public string SubscriptionKey { get; set; }
+    public string Region { get; set; }
+    
+    // Service-specific configurations
+    public TextAnalyticsConfig TextAnalytics { get; set; }
+    public ComputerVisionConfig ComputerVision { get; set; }
+    public SpeechConfig Speech { get; set; }
+}
+
+// In Startup.cs or Program.cs
+services.Configure&lt;AzureAIConfiguration&gt;(configuration.GetSection(&quot;AzureAI&quot;));
+</code></pre>
+<h2>Text Analytics Integration</h2>
+<h3>Basic Setup and Usage</h3>
+<pre><code class="language-csharp">public class TextAnalyticsService
+{
+    private readonly TextAnalyticsClient _client;
+    
+    public TextAnalyticsService(IOptions&lt;AzureAIConfiguration&gt; config)
+    {
+        var credential = new AzureKeyCredential(config.Value.SubscriptionKey);
+        _client = new TextAnalyticsClient(new Uri(config.Value.Endpoint), credential);
+    }
+    
+    public async Task&lt;SentimentAnalysisResult&gt; AnalyzeSentiment(string text)
+    {
+        try
+        {
+            var response = await _client.AnalyzeSentimentAsync(text);
+            
+            return new SentimentAnalysisResult
+            {
+                Sentiment = response.Value.Sentiment.ToString(),
+                ConfidenceScores = new ConfidenceScores
+                {
+                    Positive = response.Value.ConfidenceScores.Positive,
+                    Neutral = response.Value.ConfidenceScores.Neutral,
+                    Negative = response.Value.ConfidenceScores.Negative
+                },
+                Sentences = response.Value.Sentences.Select(s =&gt; new SentenceSentiment
+                {
+                    Text = s.Text,
+                    Sentiment = s.Sentiment.ToString(),
+                    ConfidenceScores = new ConfidenceScores
+                    {
+                        Positive = s.ConfidenceScores.Positive,
+                        Neutral = s.ConfidenceScores.Neutral,
+                        Negative = s.ConfidenceScores.Negative
+                    }
+                }).ToList()
+            };
+        }
+        catch (RequestFailedException ex)
+        {
+            // Handle specific Azure AI errors
+            throw new TextAnalyticsException($&quot;Failed to analyze sentiment: {ex.Message}&quot;, ex);
+        }
+    }
+}
+</code></pre>
+<h3>Advanced Text Analytics Features</h3>
+<pre><code class="language-csharp">public class AdvancedTextAnalytics
+{
+    private readonly TextAnalyticsClient _client;
+    
+    public async Task&lt;ComprehensiveTextAnalysis&gt; AnalyzeText(string text)
+    {
+        var tasks = new List&lt;Task&gt;();
+        var results = new ComprehensiveTextAnalysis();
+        
+        // Run multiple analyses in parallel
+        var sentimentTask = AnalyzeSentiment(text);
+        var keyPhrasesTask = ExtractKeyPhrases(text);
+        var entitiesTask = RecognizeEntities(text);
+        var languageTask = DetectLanguage(text);
+        
+        await Task.WhenAll(sentimentTask, keyPhrasesTask, entitiesTask, languageTask);
+        
+        results.Sentiment = await sentimentTask;
+        results.KeyPhrases = await keyPhrasesTask;
+        results.Entities = await entitiesTask;
+        results.Language = await languageTask;
+        
+        return results;
+    }
+    
+    public async Task&lt;List&lt;string&gt;&gt; ExtractKeyPhrases(string text)
+    {
+        var response = await _client.ExtractKeyPhrasesAsync(text);
+        return response.Value.ToList();
+    }
+    
+    public async Task&lt;List&lt;EntityResult&gt;&gt; RecognizeEntities(string text)
+    {
+        var response = await _client.RecognizeEntitiesAsync(text);
+        
+        return response.Value.Select(entity =&gt; new EntityResult
+        {
+            Text = entity.Text,
+            Category = entity.Category.ToString(),
+            SubCategory = entity.SubCategory,
+            ConfidenceScore = entity.ConfidenceScore,
+            Offset = entity.Offset,
+            Length = entity.Length
+        }).ToList();
+    }
+}
+</code></pre>
+<h2>Computer Vision Integration</h2>
+<h3>Image Analysis Service</h3>
+<pre><code class="language-csharp">public class ComputerVisionService
+{
+    private readonly ComputerVisionClient _client;
+    
+    public ComputerVisionService(IOptions&lt;AzureAIConfiguration&gt; config)
+    {
+        var credential = new ApiKeyServiceClientCredentials(config.Value.SubscriptionKey);
+        _client = new ComputerVisionClient(credential)
+        {
+            Endpoint = config.Value.Endpoint
+        };
+    }
+    
+    public async Task&lt;ImageAnalysisResult&gt; AnalyzeImage(Stream imageStream)
+    {
+        var features = new List&lt;VisualFeatureTypes?&gt;
+        {
+            VisualFeatureTypes.Categories,
+            VisualFeatureTypes.Description,
+            VisualFeatureTypes.Objects,
+            VisualFeatureTypes.Tags,
+            VisualFeatureTypes.Adult,
+            VisualFeatureTypes.Color,
+            VisualFeatureTypes.ImageType
+        };
+        
+        try
+        {
+            var analysis = await _client.AnalyzeImageInStreamAsync(imageStream, features);
+            
+            return new ImageAnalysisResult
+            {
+                Description = analysis.Description?.Captions?.FirstOrDefault()?.Text,
+                Tags = analysis.Tags?.Select(t =&gt; new ImageTag 
+                { 
+                    Name = t.Name, 
+                    Confidence = t.Confidence 
+                }).ToList(),
+                Objects = analysis.Objects?.Select(o =&gt; new DetectedObject
+                {
+                    ObjectProperty = o.ObjectProperty,
+                    Confidence = o.Confidence,
+                    Rectangle = new BoundingRectangle
+                    {
+                        X = o.Rectangle.X,
+                        Y = o.Rectangle.Y,
+                        W = o.Rectangle.W,
+                        H = o.Rectangle.H
+                    }
+                }).ToList(),
+                IsAdultContent = analysis.Adult?.IsAdultContent ?? false,
+                AdultScore = analysis.Adult?.AdultScore ?? 0,
+                RacyScore = analysis.Adult?.RacyScore ?? 0
+            };
+        }
+        catch (ComputerVisionErrorException ex)
+        {
+            throw new ImageAnalysisException($&quot;Failed to analyze image: {ex.Body?.Error?.Message}&quot;, ex);
+        }
+    }
+}
+</code></pre>
+<h3>OCR (Optical Character Recognition)</h3>
+<pre><code class="language-csharp">public class OCRService
+{
+    private readonly ComputerVisionClient _client;
+    
+    public async Task&lt;OCRResult&gt; ExtractTextFromImage(Stream imageStream)
+    {
+        // Use Read API for better accuracy
+        var readResult = await _client.ReadInStreamAsync(imageStream);
+        
+        // Get operation ID from the URL
+        var operationId = readResult.OperationLocation.Split(&#39;/&#39;).Last();
+        
+        // Poll for results
+        ReadOperationResult results;
+        do
+        {
+            await Task.Delay(1000);
+            results = await _client.GetReadResultAsync(Guid.Parse(operationId));
+        }
+        while (results.Status == OperationStatusCodes.Running || 
+               results.Status == OperationStatusCodes.NotStarted);
+        
+        if (results.Status == OperationStatusCodes.Succeeded)
+        {
+            var textResults = new List&lt;ExtractedText&gt;();
+            
+            foreach (var page in results.AnalyzeResult.ReadResults)
+            {
+                foreach (var line in page.Lines)
+                {
+                    textResults.Add(new ExtractedText
+                    {
+                        Text = line.Text,
+                        BoundingBox = line.BoundingBox,
+                        Confidence = line.Words.Average(w =&gt; w.Confidence)
+                    });
+                }
+            }
+            
+            return new OCRResult
+            {
+                ExtractedTexts = textResults,
+                FullText = string.Join(&quot; &quot;, textResults.Select(t =&gt; t.Text))
+            };
+        }
+        
+        throw new OCRException($&quot;OCR operation failed with status: {results.Status}&quot;);
+    }
+}
+</code></pre>
+<h2>Azure OpenAI Integration</h2>
+<h3>Setting up OpenAI Client</h3>
+<pre><code class="language-csharp">public class AzureOpenAIService
+{
+    private readonly OpenAIClient _client;
+    private readonly string _deploymentName;
+    
+    public AzureOpenAIService(IOptions&lt;AzureAIConfiguration&gt; config)
+    {
+        _client = new OpenAIClient(
+            new Uri(config.Value.OpenAI.Endpoint),
+            new AzureKeyCredential(config.Value.OpenAI.ApiKey)
+        );
+        _deploymentName = config.Value.OpenAI.DeploymentName;
+    }
+    
+    public async Task&lt;string&gt; GenerateCompletion(string prompt, int maxTokens = 1000)
+    {
+        var completionsOptions = new CompletionsOptions()
+        {
+            DeploymentName = _deploymentName,
+            Prompts = { prompt },
+            MaxTokens = maxTokens,
+            Temperature = 0.7f,
+            FrequencyPenalty = 0.0f,
+            PresencePenalty = 0.0f
+        };
+        
+        try
+        {
+            var response = await _client.GetCompletionsAsync(completionsOptions);
+            return response.Value.Choices[0].Text.Trim();
+        }
+        catch (RequestFailedException ex)
+        {
+            throw new OpenAIException($&quot;Failed to generate completion: {ex.Message}&quot;, ex);
+        }
+    }
+    
+    public async Task&lt;string&gt; ChatCompletion(List&lt;ChatMessage&gt; messages)
+    {
+        var chatCompletionsOptions = new ChatCompletionsOptions(_deploymentName, messages)
+        {
+            MaxTokens = 1000,
+            Temperature = 0.7f
+        };
+        
+        var response = await _client.GetChatCompletionsAsync(chatCompletionsOptions);
+        return response.Value.Choices[0].Message.Content;
+    }
+}
+</code></pre>
+<h3>Intelligent Document Processing Example</h3>
+<pre><code class="language-csharp">public class IntelligentDocumentProcessor
+{
+    private readonly OCRService _ocrService;
+    private readonly AzureOpenAIService _openAIService;
+    private readonly TextAnalyticsService _textAnalytics;
+    
+    public async Task&lt;ProcessedDocument&gt; ProcessDocument(Stream documentStream)
+    {
+        // Step 1: Extract text using OCR
+        var ocrResult = await _ocrService.ExtractTextFromImage(documentStream);
+        
+        // Step 2: Analyze extracted text
+        var textAnalysis = await _textAnalytics.AnalyzeText(ocrResult.FullText);
+        
+        // Step 3: Use OpenAI to structure and summarize
+        var structurePrompt = $@&quot;
+        Analyze the following extracted text and provide a structured summary:
+        
+        Text: {ocrResult.FullText}
+        
+        Please provide:
+        1. Document Type
+        2. Key Information
+        3. Summary
+        4. Action Items (if any)
+        
+        Format as JSON.&quot;;
+        
+        var structuredData = await _openAIService.GenerateCompletion(structurePrompt);
+        
+        return new ProcessedDocument
+        {
+            OriginalText = ocrResult.FullText,
+            ExtractedTexts = ocrResult.ExtractedTexts,
+            Sentiment = textAnalysis.Sentiment,
+            KeyPhrases = textAnalysis.KeyPhrases,
+            Entities = textAnalysis.Entities,
+            StructuredData = structuredData,
+            ProcessedDate = DateTime.UtcNow
+        };
+    }
+}
+</code></pre>
+<h2>Production Best Practices</h2>
+<h3>1. Error Handling and Resilience</h3>
+<pre><code class="language-csharp">public class ResilientAIService
+{
+    private readonly IAsyncPolicy _retryPolicy;
+    
+    public ResilientAIService()
+    {
+        _retryPolicy = Policy
+            .Handle&lt;RequestFailedException&gt;(ex =&gt; ex.Status == 429 || ex.Status &gt;= 500)
+            .WaitAndRetryAsync(
+                retryCount: 3,
+                sleepDurationProvider: retryAttempt =&gt; TimeSpan.FromSeconds(Math.Pow(2, retryAttempt)),
+                onRetry: (outcome, timespan, retryCount, context) =&gt;
+                {
+                    Console.WriteLine($&quot;Retry {retryCount} after {timespan} seconds&quot;);
+                });
+    }
+    
+    public async Task&lt;T&gt; ExecuteWithRetry&lt;T&gt;(Func&lt;Task&lt;T&gt;&gt; operation)
+    {
+        return await _retryPolicy.ExecuteAsync(operation);
+    }
+}
+</code></pre>
+<h3>2. Rate Limiting and Throttling</h3>
+<pre><code class="language-csharp">public class AIServiceRateLimiter
+{
+    private readonly SemaphoreSlim _semaphore;
+    private readonly Queue&lt;DateTime&gt; _requestTimes;
+    private readonly int _maxRequestsPerMinute;
+    
+    public AIServiceRateLimiter(int maxRequestsPerMinute = 100)
+    {
+        _maxRequestsPerMinute = maxRequestsPerMinute;
+        _semaphore = new SemaphoreSlim(1, 1);
+        _requestTimes = new Queue&lt;DateTime&gt;();
+    }
+    
+    public async Task&lt;T&gt; ExecuteRateLimited&lt;T&gt;(Func&lt;Task&lt;T&gt;&gt; operation)
+    {
+        await _semaphore.WaitAsync();
+        try
+        {
+            // Clean old requests
+            var cutoff = DateTime.UtcNow.AddMinutes(-1);
+            while (_requestTimes.Count &gt; 0 &amp;&amp; _requestTimes.Peek() &lt; cutoff)
+            {
+                _requestTimes.Dequeue();
+            }
+            
+            // Check if we can make a request
+            if (_requestTimes.Count &gt;= _maxRequestsPerMinute)
+            {
+                var waitTime = _requestTimes.Peek().AddMinutes(1) - DateTime.UtcNow;
+                await Task.Delay(waitTime);
+            }
+            
+            _requestTimes.Enqueue(DateTime.UtcNow);
+            return await operation();
+        }
+        finally
+        {
+            _semaphore.Release();
+        }
+    }
+}
+</code></pre>
+<h3>3. Caching Strategy</h3>
+<pre><code class="language-csharp">public class CachedAIService
+{
+    private readonly IMemoryCache _cache;
+    private readonly TextAnalyticsService _textAnalytics;
+    
+    public async Task&lt;SentimentAnalysisResult&gt; AnalyzeSentimentCached(string text)
+    {
+        var cacheKey = $&quot;sentiment:{ComputeHash(text)}&quot;;
+        
+        if (_cache.TryGetValue(cacheKey, out SentimentAnalysisResult cachedResult))
+        {
+            return cachedResult;
+        }
+        
+        var result = await _textAnalytics.AnalyzeSentiment(text);
+        
+        var cacheOptions = new MemoryCacheEntryOptions
+        {
+            AbsoluteExpirationRelativeToNow = TimeSpan.FromHours(24),
+            SlidingExpiration = TimeSpan.FromHours(1),
+            Size = 1
+        };
+        
+        _cache.Set(cacheKey, result, cacheOptions);
+        return result;
+    }
+    
+    private string ComputeHash(string input)
+    {
+        using var sha256 = SHA256.Create();
+        var hash = sha256.ComputeHash(Encoding.UTF8.GetBytes(input));
+        return Convert.ToBase64String(hash);
+    }
+}
+</code></pre>
+<h3>4. Monitoring and Telemetry</h3>
+<pre><code class="language-csharp">public class MonitoredAIService
+{
+    private readonly ILogger&lt;MonitoredAIService&gt; _logger;
+    private readonly TelemetryClient _telemetryClient;
+    
+    public async Task&lt;T&gt; ExecuteWithTelemetry&lt;T&gt;(
+        string operationName, 
+        Func&lt;Task&lt;T&gt;&gt; operation,
+        Dictionary&lt;string, string&gt; properties = null)
+    {
+        using var activity = _telemetryClient.StartOperation&lt;DependencyTelemetry&gt;(operationName);
+        var stopwatch = Stopwatch.StartNew();
+        
+        try
+        {
+            var result = await operation();
+            
+            activity.Telemetry.Success = true;
+            activity.Telemetry.Duration = stopwatch.Elapsed;
+            
+            _telemetryClient.TrackEvent($&quot;{operationName}_Success&quot;, properties);
+            
+            return result;
+        }
+        catch (Exception ex)
+        {
+            activity.Telemetry.Success = false;
+            _telemetryClient.TrackException(ex, properties);
+            
+            _logger.LogError(ex, &quot;AI service operation {OperationName} failed&quot;, operationName);
+            throw;
+        }
+        finally
+        {
+            stopwatch.Stop();
+        }
+    }
+}
+</code></pre>
+<h3>5. Cost Optimization</h3>
+<pre><code class="language-csharp">public class CostOptimizedAIService
+{
+    private readonly IConfiguration _configuration;
+    
+    public async Task&lt;string&gt; OptimizeTextForProcessing(string text)
+    {
+        var maxLength = _configuration.GetValue&lt;int&gt;(&quot;AI:MaxTextLength&quot;, 5000);
+        
+        if (text.Length &lt;= maxLength)
+            return text;
+        
+        // Intelligent truncation - keep important parts
+        var sentences = text.Split(&#39;.&#39;, StringSplitOptions.RemoveEmptyEntries);
+        var result = new StringBuilder();
+        
+        foreach (var sentence in sentences)
+        {
+            if (result.Length + sentence.Length &lt;= maxLength)
+            {
+                result.Append(sentence).Append(&#39;.&#39;);
+            }
+            else
+            {
+                break;
+            }
+        }
+        
+        return result.ToString();
+    }
+    
+    public bool ShouldProcessWithAI(string text, double threshold = 0.7)
+    {
+        // Use simple heuristics to avoid unnecessary AI calls
+        if (string.IsNullOrWhiteSpace(text) || text.Length &lt; 10)
+            return false;
+            
+        // Check if text contains meaningful content
+        var words = text.Split(&#39; &#39;, StringSplitOptions.RemoveEmptyEntries);
+        var meaningfulWords = words.Count(w =&gt; w.Length &gt; 3);
+        
+        return (double)meaningfulWords / words.Length &gt; threshold;
+    }
+}
+</code></pre>
+<h2>Integration Testing</h2>
+<pre><code class="language-csharp">[TestClass]
+public class AzureAIIntegrationTests
+{
+    private TextAnalyticsService _textAnalytics;
+    
+    [TestInitialize]
+    public void Setup()
+    {
+        var config = new AzureAIConfiguration
+        {
+            Endpoint = &quot;https://your-resource.cognitiveservices.azure.com/&quot;,
+            SubscriptionKey = &quot;your-test-key&quot;
+        };
+        
+        _textAnalytics = new TextAnalyticsService(Options.Create(config));
+    }
+    
+    [TestMethod]
+    public async Task AnalyzeSentiment_PositiveText_ReturnsPositiveSentiment()
+    {
+        // Arrange
+        var text = &quot;I love this product! It&#39;s amazing and works perfectly.&quot;;
+        
+        // Act
+        var result = await _textAnalytics.AnalyzeSentiment(text);
+        
+        // Assert
+        Assert.AreEqual(&quot;Positive&quot;, result.Sentiment);
+        Assert.IsTrue(result.ConfidenceScores.Positive &gt; 0.7);
+    }
+    
+    [TestMethod]
+    public async Task AnalyzeSentiment_InvalidInput_ThrowsException()
+    {
+        // Arrange
+        var text = &quot;&quot;;
+        
+        // Act &amp; Assert
+        await Assert.ThrowsExceptionAsync&lt;TextAnalyticsException&gt;(
+            () =&gt; _textAnalytics.AnalyzeSentiment(text));
+    }
+}
+</code></pre>
+<h2>Conclusion</h2>
+<p>Azure AI Services provide powerful capabilities that can transform your applications, but successful integration requires careful planning around:</p>
+<ol>
+<li><strong>Proper error handling</strong> and resilience patterns</li>
+<li><strong>Rate limiting</strong> and cost optimization</li>
+<li><strong>Caching strategies</strong> for performance</li>
+<li><strong>Monitoring and telemetry</strong> for observability</li>
+<li><strong>Security</strong> considerations for API keys and data</li>
+</ol>
+<p>By following these patterns and practices, you can build robust, production-ready applications that leverage the full power of Azure AI Services.</p>
+<hr>
+<p><em>Need help integrating Azure AI Services into your applications? I&#39;ve helped numerous organizations implement intelligent solutions at scale. <a href="https://www.linkedin.com/in/javiervillullas/">Connect with me on LinkedIn</a> or <a href="mailto:jvillullas@gmail.com">send me an email</a> to discuss your specific requirements.</em></p>
+ </div> <!-- Author Bio --> <div class="mt-16 p-8 bg-gradient-to-r from-blue-50 to-blue-100 rounded-xl" data-astro-cid-4sn4zg3r> <div class="flex items-start space-x-6" data-astro-cid-4sn4zg3r> <img src="/yo.jpeg" alt="Javier Villullas" class="w-20 h-20 rounded-full object-cover border-4 border-blue-300" data-astro-cid-4sn4zg3r> <div data-astro-cid-4sn4zg3r> <h3 class="text-2xl font-bold text-gray-800 mb-2" data-astro-cid-4sn4zg3r>Javier Villullas</h3> <p class="text-lg text-blue-800 font-semibold mb-3" data-astro-cid-4sn4zg3r>AI-First Azure Cloud Expert</p> <p class="text-gray-700 leading-relaxed mb-4" data-astro-cid-4sn4zg3r>
+With over 20 years of experience in software development, I specialize in building intelligent cloud solutions that leverage AI to drive real business value. I help organizations transform their operations through AI-first architecture and Azure cloud technologies.
+</p> <div class="flex space-x-4" data-astro-cid-4sn4zg3r> <a href="https://www.linkedin.com/in/javiervillullas/" target="_blank" rel="noopener noreferrer" class="inline-flex items-center text-blue-600 hover:text-blue-800 font-semibold transition-colors" data-astro-cid-4sn4zg3r> <svg class="w-5 h-5 mr-2" fill="currentColor" viewBox="0 0 20 20" data-astro-cid-4sn4zg3r> <path fill-rule="evenodd" d="M16.338 16.338H13.67V12.16c0-.987-.018-2.256-1.378-2.256-1.379 0-1.597 1.077-1.597 2.193v4.341H7.338V7.22h2.518v1.161h.036c.35-.664 1.206-1.378 2.476-1.378 2.652 0 3.14 1.745 3.14 4.015v4.92Zm-13.67 0H2.668V7.22h2.667v9.118ZM4.001 5.925a1.986 1.986 0 1 1 0-3.972 1.986 1.986 0 0 1 0 3.972Z" clip-rule="evenodd" data-astro-cid-4sn4zg3r></path> </svg>
+Connect on LinkedIn
+</a> <a href="mailto:jvillullas@gmail.com" class="inline-flex items-center text-blue-600 hover:text-blue-800 font-semibold transition-colors" data-astro-cid-4sn4zg3r> <svg class="w-5 h-5 mr-2" fill="currentColor" viewBox="0 0 20 20" data-astro-cid-4sn4zg3r> <path d="M2.003 5.884L10 9.882l7.997-3.998A2 2 0 0016 4H4a2 2 0 00-1.997 1.884z" data-astro-cid-4sn4zg3r></path> <path d="M18 8.118l-8 4-8-4V14a2 2 0 002 2h12a2 2 0 002-2V8.118z" data-astro-cid-4sn4zg3r></path> </svg>
+Send Email
+</a> </div> </div> </div> </div> <!-- Navigation --> <div class="mt-12 flex justify-between items-center" data-astro-cid-4sn4zg3r> <a href="/blog" class="inline-flex items-center text-blue-600 hover:text-blue-800 font-semibold transition-colors group" data-astro-cid-4sn4zg3r> <svg class="w-5 h-5 mr-2 transform group-hover:-translate-x-1 transition-transform" fill="none" stroke="currentColor" viewBox="0 0 24 24" data-astro-cid-4sn4zg3r> <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M15 19l-7-7 7-7" data-astro-cid-4sn4zg3r></path> </svg>
+Back to Blog
+</a> <div class="flex space-x-4" data-astro-cid-4sn4zg3r> <button onclick="shareOnLinkedIn()" class="bg-blue-600 hover:bg-blue-700 text-white px-4 py-2 rounded-lg font-semibold transition-colors" data-astro-cid-4sn4zg3r>
+Share on LinkedIn
+</button> <button onclick="copyToClipboard()" class="bg-gray-600 hover:bg-gray-700 text-white px-4 py-2 rounded-lg font-semibold transition-colors" data-astro-cid-4sn4zg3r>
+Copy Link
+</button> </div> </div> </div> </div> </article> <!-- Related Posts Section --> <section class="py-16 bg-gray-50" data-astro-cid-4sn4zg3r> <div class="container mx-auto px-6" data-astro-cid-4sn4zg3r> <div class="max-w-4xl mx-auto text-center" data-astro-cid-4sn4zg3r> <h2 class="text-3xl font-bold text-gray-800 mb-8" data-astro-cid-4sn4zg3r>More AI & Cloud Insights</h2> <p class="text-lg text-gray-600 mb-8" data-astro-cid-4sn4zg3r>
+Explore more articles about artificial intelligence, cloud architecture, and modern development practices.
+</p> <a href="/blog" class="inline-flex items-center bg-blue-600 hover:bg-blue-700 text-white font-bold py-3 px-8 rounded-full transition duration-300 transform hover:scale-105 shadow-lg" data-astro-cid-4sn4zg3r>
+View All Posts
+<svg class="w-5 h-5 ml-2" fill="none" stroke="currentColor" viewBox="0 0 24 24" data-astro-cid-4sn4zg3r> <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M9 5l7 7-7 7" data-astro-cid-4sn4zg3r></path> </svg> </a> </div> </div> </section> </div>   </main> <footer class="py-8 bg-gray-900 text-white text-center text-sm" data-astro-cid-sckkx6r4> <p data-astro-cid-sckkx6r4>&copy; 2025 Javier Villullas. All rights reserved.</p> </footer> </body></html>

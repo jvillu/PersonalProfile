@@ -1,0 +1,124 @@
+<svg width="1200" height="630" viewBox="0 0 1200 630" xmlns="http://www.w3.org/2000/svg">
+  <defs>
+    <linearGradient id="azureGradient" x1="0%" y1="0%" x2="100%" y2="100%">
+      <stop offset="0%" style="stop-color:#1e40af;stop-opacity:1" />
+      <stop offset="50%" style="stop-color:#3b82f6;stop-opacity:1" />
+      <stop offset="100%" style="stop-color:#0ea5e9;stop-opacity:1" />
+    </linearGradient>
+    <linearGradient id="azureOverlay" x1="0%" y1="0%" x2="100%" y2="100%">
+      <stop offset="0%" style="stop-color:#1e3a8a;stop-opacity:0.6" />
+      <stop offset="100%" style="stop-color:#0369a1;stop-opacity:0.4" />
+    </linearGradient>
+  </defs>
+  
+  <!-- Background -->
+  <rect width="1200" height="630" fill="url(#azureGradient)"/>
+  
+  <!-- Azure AI Services Dashboard -->
+  <g opacity="0.7">
+    <!-- Main Dashboard Container -->
+    <rect x="100" y="100" width="1000" height="400" rx="12" fill="rgba(255,255,255,0.95)" stroke="#0ea5e9" stroke-width="3"/>
+    
+    <!-- Header -->
+    <rect x="100" y="100" width="1000" height="60" rx="12 12 0 0" fill="#0ea5e9"/>
+    <text x="130" y="135" fill="white" font-family="Arial" font-size="24" font-weight="bold">Azure AI Services Dashboard</text>
+    <text x="900" y="135" fill="white" font-family="Arial" font-size="14">🔄 Real-time Monitoring</text>
+    
+    <!-- Cognitive Services Grid -->
+    <g transform="translate(130, 190)">
+      <!-- Computer Vision -->
+      <rect x="0" y="0" width="180" height="120" rx="8" fill="#f0f9ff" stroke="#0ea5e9" stroke-width="2"/>
+      <text x="90" y="25" fill="#0369a1" font-family="Arial" font-size="14" font-weight="bold" text-anchor="middle">Computer Vision</text>
+      <circle cx="90" cy="50" r="15" fill="#0ea5e9"/>
+      <text x="90" y="56" fill="white" font-family="Arial" font-size="12" text-anchor="middle">👁️</text>
+      <text x="90" y="80" fill="#0369a1" font-family="Arial" font-size="12" text-anchor="middle">Image Analysis</text>
+      <text x="90" y="95" fill="#0369a1" font-family="Arial" font-size="12" text-anchor="middle">OCR • Face Detection</text>
+      <text x="90" y="110" fill="#10b981" font-family="Arial" font-size="11" font-weight="bold" text-anchor="middle">✓ Active</text>
+      
+      <!-- Language Understanding -->
+      <rect x="200" y="0" width="180" height="120" rx="8" fill="#f0f9ff" stroke="#0ea5e9" stroke-width="2"/>
+      <text x="290" y="25" fill="#0369a1" font-family="Arial" font-size="14" font-weight="bold" text-anchor="middle">Language (LUIS)</text>
+      <circle cx="290" cy="50" r="15" fill="#0ea5e9"/>
+      <text x="290" y="56" fill="white" font-family="Arial" font-size="12" text-anchor="middle">💬</text>
+      <text x="290" y="80" fill="#0369a1" font-family="Arial" font-size="12" text-anchor="middle">Intent Recognition</text>
+      <text x="290" y="95" fill="#0369a1" font-family="Arial" font-size="12" text-anchor="middle">NLP • Sentiment</text>
+      <text x="290" y="110" fill="#10b981" font-family="Arial" font-size="11" font-weight="bold" text-anchor="middle">✓ Active</text>
+      
+      <!-- Speech Services -->
+      <rect x="400" y="0" width="180" height="120" rx="8" fill="#f0f9ff" stroke="#0ea5e9" stroke-width="2"/>
+      <text x="490" y="25" fill="#0369a1" font-family="Arial" font-size="14" font-weight="bold" text-anchor="middle">Speech Services</text>
+      <circle cx="490" cy="50" r="15" fill="#0ea5e9"/>
+      <text x="490" y="56" fill="white" font-family="Arial" font-size="12" text-anchor="middle">🎤</text>
+      <text x="490" y="80" fill="#0369a1" font-family="Arial" font-size="12" text-anchor="middle">Speech-to-Text</text>
+      <text x="490" y="95" fill="#0369a1" font-family="Arial" font-size="12" text-anchor="middle">Text-to-Speech</text>
+      <text x="490" y="110" fill="#10b981" font-family="Arial" font-size="11" font-weight="bold" text-anchor="middle">✓ Active</text>
+      
+      <!-- Custom Vision -->
+      <rect x="600" y="0" width="180" height="120" rx="8" fill="#f0f9ff" stroke="#0ea5e9" stroke-width="2"/>
+      <text x="690" y="25" fill="#0369a1" font-family="Arial" font-size="14" font-weight="bold" text-anchor="middle">Custom Vision</text>
+      <circle cx="690" cy="50" r="15" fill="#0ea5e9"/>
+      <text x="690" y="56" fill="white" font-family="Arial" font-size="12" text-anchor="middle">🔍</text>
+      <text x="690" y="80" fill="#0369a1" font-family="Arial" font-size="12" text-anchor="middle">Object Detection</text>
+      <text x="690" y="95" fill="#0369a1" font-family="Arial" font-size="12" text-anchor="middle">Classification</text>
+      <text x="690" y="110" fill="#10b981" font-family="Arial" font-size="11" font-weight="bold" text-anchor="middle">✓ Active</text>
+      
+      <!-- Bot Framework -->
+      <rect x="800" y="0" width="180" height="120" rx="8" fill="#f0f9ff" stroke="#0ea5e9" stroke-width="2"/>
+      <text x="890" y="25" fill="#0369a1" font-family="Arial" font-size="14" font-weight="bold" text-anchor="middle">Bot Framework</text>
+      <circle cx="890" cy="50" r="15" fill="#0ea5e9"/>
+      <text x="890" y="56" fill="white" font-family="Arial" font-size="12" text-anchor="middle">🤖</text>
+      <text x="890" y="80" fill="#0369a1" font-family="Arial" font-size="12" text-anchor="middle">Conversational AI</text>
+      <text x="890" y="95" fill="#0369a1" font-family="Arial" font-size="12" text-anchor="middle">Multi-channel</text>
+      <text x="890" y="110" fill="#10b981" font-family="Arial" font-size="11" font-weight="bold" text-anchor="middle">✓ Active</text>
+    </g>
+    
+    <!-- Machine Learning Studio -->
+    <g transform="translate(130, 330)">
+      <rect x="0" y="0" width="940" height="100" rx="8" fill="#f8fafc" stroke="#64748b" stroke-width="2"/>
+      <text x="20" y="25" fill="#334155" font-family="Arial" font-size="16" font-weight="bold">Azure Machine Learning Studio</text>
+      
+      <rect x="20" y="35" width="200" height="25" rx="4" fill="#dbeafe" stroke="#3b82f6" stroke-width="1"/>
+      <text x="120" y="52" fill="#1e40af" font-family="Arial" font-size="12" text-anchor="middle">Model Training Pipeline</text>
+      
+      <rect x="240" y="35" width="180" height="25" rx="4" fill="#dcfce7" stroke="#16a34a" stroke-width="1"/>
+      <text x="330" y="52" fill="#15803d" font-family="Arial" font-size="12" text-anchor="middle">AutoML Experiment</text>
+      
+      <rect x="440" y="35" width="160" height="25" rx="4" fill="#fef3c7" stroke="#d97706" stroke-width="1"/>
+      <text x="520" y="52" fill="#b45309" font-family="Arial" font-size="12" text-anchor="middle">Model Deployment</text>
+      
+      <rect x="620" y="35" width="140" height="25" rx="4" fill="#fce7f3" stroke="#db2777" stroke-width="1"/>
+      <text x="690" y="52" fill="#be185d" font-family="Arial" font-size="12" text-anchor="middle">Performance Monitor</text>
+      
+      <rect x="780" y="35" width="140" height="25" rx="4" fill="#e0e7ff" stroke="#6366f1" stroke-width="1"/>
+      <text x="850" y="52" fill="#4f46e5" font-family="Arial" font-size="12" text-anchor="middle">Data Drift Detection</text>
+      
+      <text x="20" y="85" fill="#64748b" font-family="Arial" font-size="12">Real-time inferencing • Model versioning • A/B testing • Responsible AI</text>
+    </g>
+    
+    <!-- Performance Metrics -->
+    <g transform="translate(130, 450)">
+      <text x="0" y="20" fill="#334155" font-family="Arial" font-size="14" font-weight="bold">Performance Metrics</text>
+      <text x="200" y="20" fill="#10b981" font-family="Arial" font-size="12">99.9% Uptime</text>
+      <text x="350" y="20" fill="#3b82f6" font-family="Arial" font-size="12">&lt; 100ms Latency</text>
+      <text x="500" y="20" fill="#8b5cf6" font-family="Arial" font-size="12">1M+ API Calls/day</text>
+      <text x="700" y="20" fill="#f59e0b" font-family="Arial" font-size="12">15 Regions Active</text>
+    </g>
+  </g>
+  
+  <!-- API Integration Code -->
+  <g transform="translate(100, 520)" opacity="0.4">
+    <rect x="0" y="0" width="500" height="80" rx="6" fill="rgba(15,23,42,0.9)" stroke="rgba(59,130,246,0.5)" stroke-width="1"/>
+    <text x="15" y="20" fill="#06b6d4" font-family="Monaco, monospace" font-size="12">const client = new CognitiveServicesManagementClient();</text>
+    <text x="15" y="35" fill="#a78bfa" font-family="Monaco, monospace" font-size="12">await client.vision.analyzeImage(imageUrl, {</text>
+    <text x="15" y="50" fill="#10b981" font-family="Monaco, monospace" font-size="12">  features: ['objects', 'tags', 'description']</text>
+    <text x="15" y="65" fill="#a78bfa" font-family="Monaco, monospace" font-size="12">});</text>
+  </g>
+  
+  <!-- Overlay -->
+  <rect width="1200" height="630" fill="url(#azureOverlay)"/>
+  
+  <!-- Title Area -->
+  <rect x="50" y="20" width="800" height="80" fill="rgba(0,0,0,0.5)" rx="8"/>
+  <text x="80" y="50" fill="white" font-family="Arial, sans-serif" font-size="32" font-weight="bold">Azure AI Services Integration</text>
+  <text x="80" y="80" fill="#93c5fd" font-family="Arial, sans-serif" font-size="18">Cognitive Services • Machine Learning • Bot Framework</text>
+</svg>
