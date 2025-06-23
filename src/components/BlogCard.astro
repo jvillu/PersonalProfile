@@ -91,9 +91,8 @@ const localizedText = getLocalizedText(language);
         {title}
       </a>
     </h3>
-    
-    <!-- Description -->
-    <p class="text-gray-600 text-base leading-relaxed mb-4 line-clamp-3">
+      <!-- Description -->
+    <p class="text-gray-600 text-base leading-6 mb-4 line-clamp-3">
       {description}
     </p>
     
@@ -132,5 +131,7 @@ const localizedText = getLocalizedText(language);
     -webkit-line-clamp: 3;
     -webkit-box-orient: vertical;
     overflow: hidden;
+    line-height: 1.5;
+    max-height: calc(1.5em * 3);
   }
 </style>
