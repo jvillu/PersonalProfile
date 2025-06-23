@@ -10,5 +10,6 @@ export default defineConfig({
     }
   },
   site: 'https://jvillullas.github.io',
+  base: '/PersonalProfile',
   output: 'static'
 });
