@@ -70,15 +70,18 @@
         <div class="absolute left-0 right-0 h-1 bg-gradient-to-r from-blue-400 via-blue-200 to-blue-400 opacity-70"></div>
     </nav>
 
-    <!-- Animated Background -->
-    <div class="fixed inset-0 -z-10 pointer-events-none">
-        <svg class="absolute top-0 left-0 w-full h-96 opacity-20 animate-float-slow" viewBox="0 0 1440 320"><path fill="#60a5fa" fill-opacity="1" d="M0,160L60,170.7C120,181,240,203,360,197.3C480,192,600,160,720,133.3C840,107,960,85,1080,101.3C1200,117,1320,171,1380,197.3L1440,224L1440,0L1380,0C1320,0,1200,0,1080,0C960,0,840,0,720,0C600,0,480,0,360,0C240,0,120,0,60,0L0,0Z"></path></svg>
-        <svg class="absolute bottom-0 right-0 w-full h-80 opacity-15 animate-float-fast" viewBox="0 0 1440 320"><path fill="#2563eb" fill-opacity="1" d="M0,288L60,272C120,256,240,224,360,197.3C480,171,600,149,720,154.7C840,160,960,192,1080,197.3C1200,203,1320,181,1380,170.7L1440,160L1440,320L1380,320C1320,320,1200,320,1080,320C960,320,840,320,720,320C600,320,480,320,360,320C240,320,120,320,60,320L0,320Z"></path></svg>
-    </div>
+
 
     <!-- Hero Section -->
     <header class="relative h-screen flex items-center justify-center text-center overflow-hidden bg-gradient-to-br from-blue-900 via-blue-700 to-blue-500">
-        <div class="absolute inset-0 bg-black opacity-40"></div>
+        <!-- Animated SVG Background within Header only -->
+        <object 
+            data="/animated-background.svg" 
+            type="image/svg+xml" 
+            class="absolute inset-0 w-full h-full object-cover opacity-70 pointer-events-none"
+            aria-hidden="true">
+        </object>
+        <div class="absolute inset-0 bg-black opacity-20"></div>
         <div class="relative z-10 text-white p-6 animate-fade-in">
             <img src="yo.jpeg" alt="Javier Villullas" class="w-48 h-48 rounded-full mx-auto mb-6 object-cover border-4 border-blue-300 shadow-2xl">
             <h1 class="text-6xl font-bold mb-4 bg-gradient-to-r from-blue-200 to-white bg-clip-text text-transparent">Javier Villullas</h1>

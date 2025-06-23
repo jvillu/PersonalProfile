@@ -8,9 +8,22 @@ export interface Props {
   slug: string;
   readingTime: string;
   language?: string; // 'en' | 'es'
+  featured_image?: string;
+  featured_image_alt?: string;
 }
 
-const { title, description, date, tags, categories, slug, readingTime, language = 'en' } = Astro.props;
+const { 
+  title, 
+  description, 
+  date, 
+  tags, 
+  categories, 
+  slug, 
+  readingTime, 
+  language = 'en',
+  featured_image,
+  featured_image_alt = title
+} = Astro.props;
 
 // Create full URL for the post
 const postUrl = slug.startsWith('/') ? slug : `/${slug}`;
@@ -35,15 +48,42 @@ const getLocalizedText = (lang: string) => {
 const localizedText = getLocalizedText(language);
 ---
 
-<article class="bg-white rounded-xl shadow-lg hover:shadow-xl transition-all duration-300 transform hover:-translate-y-1 overflow-hidden">
-  <div class="p-6">
-    <!-- Category Badge -->
-    <div class="flex items-center justify-between mb-3">
-      <span class="bg-blue-100 text-blue-800 text-xs font-semibold px-3 py-1 rounded-full">
-        {categories}
-      </span>
-      <span class="text-gray-500 text-sm">{readingTime}</span>
+<article class="bg-white rounded-xl shadow-lg hover:shadow-xl transition-all duration-300 transform hover:-translate-y-1 overflow-hidden group">
+  <!-- Featured Image -->
+  {featured_image && (
+    <div class="relative overflow-hidden h-48">
+      <img 
+        src={featured_image} 
+        alt={featured_image_alt}
+        class="w-full h-full object-cover transition-transform duration-300 group-hover:scale-105"
+        loading="lazy"
+      />
+      <div class="absolute inset-0 bg-gradient-to-t from-black/50 via-transparent to-transparent opacity-0 group-hover:opacity-100 transition-opacity duration-300"></div>
+      <!-- Category Badge on Image -->
+      <div class="absolute top-4 left-4">
+        <span class="bg-blue-600 text-white text-xs font-semibold px-3 py-1 rounded-full shadow-lg">
+          {categories}
+        </span>
+      </div>
+      <!-- Reading Time on Image -->
+      <div class="absolute top-4 right-4">
+        <span class="bg-black/30 backdrop-blur-sm text-white text-xs font-medium px-2 py-1 rounded-full">
+          {readingTime}
+        </span>
+      </div>
     </div>
+  )}
+  
+  <div class="p-6">
+    <!-- Category Badge (if no image) -->
+    {!featured_image && (
+      <div class="flex items-center justify-between mb-3">
+        <span class="bg-blue-100 text-blue-800 text-xs font-semibold px-3 py-1 rounded-full">
+          {categories}
+        </span>
+        <span class="text-gray-500 text-sm">{readingTime}</span>
+      </div>
+    )}
     
     <!-- Title -->
     <h3 class="text-xl font-bold text-gray-800 mb-3 hover:text-blue-600 transition-colors">

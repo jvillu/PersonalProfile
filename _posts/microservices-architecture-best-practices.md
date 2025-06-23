@@ -4,6 +4,8 @@ categories: architecture
 tags: ["microservices", "azure", "kubernetes", "docker", "architecture"]
 date: "2025-06-20"
 description: "Learn proven patterns and practices for building scalable microservices on Azure, with real-world examples from enterprise projects."
+featured_image: "/images/blog/microservices-architecture.svg"
+featured_image_alt: "Microservices Architecture diagram showing API Gateway, distributed services, databases, and container orchestration"
 ---
 
 # Microservices Architecture Best Practices for Azure Cloud

@@ -4,6 +4,8 @@ categories: ai_development
 tags: ["azure", "ai", "development", "cloud", "machine-learning"]
 date: "2025-06-23"
 description: "Explore how to build intelligent applications using Azure AI services, from cognitive services to custom machine learning models."
+featured_image: "/images/blog/ai-first-development-azure.svg"
+featured_image_alt: "AI-First Development with Azure - Modern dashboard showing neural networks, Azure cloud infrastructure, and code integration"
 ---
 
 # AI-First Development with Azure: A Comprehensive Guide

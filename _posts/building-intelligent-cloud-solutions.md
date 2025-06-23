@@ -4,6 +4,8 @@ categories: cloud_solutions
 tags: ["azure", "intelligent-systems", "cloud-architecture", "ai", "automation"]
 date: "2025-06-18"
 description: "Explore proven patterns for building intelligent cloud solutions that adapt, learn, and provide business value through AI integration."
+featured_image: "/images/blog/building-intelligent-cloud-solutions.svg"
+featured_image_alt: "Intelligent Cloud Solutions architecture showing hybrid cloud, AI services, edge computing, and data flow"
 ---
 
 # Building Intelligent Cloud Solutions: Patterns and Practices

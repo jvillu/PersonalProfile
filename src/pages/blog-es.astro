@@ -27,6 +27,8 @@ const posts = filenames
       tags: data.tags || [],
       categories: data.categories,
       readingTime: stats.text,
+      featured_image: data.featured_image,
+      featured_image_alt: data.featured_image_alt,
       content
     };
   })
@@ -122,6 +124,8 @@ const allCategories = [...new Set(posts.map(post => post.categories))];
               slug={`/blog-es/${post.slug}`}
               readingTime={post.readingTime}
               language="es"
+              featured_image={post.featured_image}
+              featured_image_alt={post.featured_image_alt}
             />
           </div>
         ))}

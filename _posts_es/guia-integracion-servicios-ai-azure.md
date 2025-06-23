@@ -4,6 +4,8 @@ categories: azure_ia
 tags: ["azure", "servicios-cognitivos", "openai", "integración", "producción"]
 date: "2025-06-15"
 description: "Guía completa para integrar servicios de Azure AI en aplicaciones de producción, con ejemplos prácticos y mejores prácticas."
+featured_image: "/images/blog/azure-ai-services-integration.svg"
+featured_image_alt: "Dashboard de servicios Azure AI mostrando Computer Vision, Language Understanding, Speech Services y Machine Learning Studio"
 ---
 
 # Guía de Integración de Servicios AI de Azure: Desde Configuración hasta Producción

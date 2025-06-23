@@ -4,6 +4,8 @@ categories: arquitectura
 tags: ["microservicios", "azure", "kubernetes", "docker", "arquitectura"]
 date: "2025-06-20"
 description: "Aprende patrones y prácticas probadas para construir microservicios escalables en Azure, con ejemplos del mundo real de proyectos empresariales."
+featured_image: "/images/blog/microservices-architecture.svg"
+featured_image_alt: "Diagrama de arquitectura de microservicios mostrando API Gateway, servicios distribuidos, bases de datos y orquestación de contenedores"
 ---
 
 # Mejores Prácticas de Arquitectura de Microservicios para Azure Cloud

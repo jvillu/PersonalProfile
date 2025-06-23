@@ -4,6 +4,8 @@ categories: soluciones_cloud
 tags: ["azure", "sistemas-inteligentes", "arquitectura-cloud", "ia", "automatización"]
 date: "2025-06-18"
 description: "Explora patrones probados para construir soluciones cloud inteligentes que se adapten, aprendan y proporcionen valor empresarial a través de la integración de IA."
+featured_image: "/images/blog/building-intelligent-cloud-solutions.svg"
+featured_image_alt: "Arquitectura de soluciones cloud inteligentes mostrando cloud híbrido, servicios de IA, edge computing y flujo de datos"
 ---
 
 # Construyendo Soluciones Cloud Inteligentes: Patrones y Prácticas
