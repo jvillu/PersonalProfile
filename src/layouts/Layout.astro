@@ -1,0 +1,97 @@
+---
+export interface Props {
+  title: string;
+  description?: string;
+}
+
+const { title, description = "AI-First Azure Cloud Expert | Javier Villullas" } = Astro.props;
+---
+
+<!DOCTYPE html>
+<html lang="en">
+  <head>
+    <meta charset="UTF-8" />
+    <meta name="description" content={description} />
+    <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+    <link rel="icon" type="image/svg+xml" href="/favicon.svg" />
+    <title>{title}</title>
+    <link href="https://unpkg.com/tailwindcss@^2/dist/tailwind.min.css" rel="stylesheet">
+    <style>
+      /* Custom animations */
+      @keyframes fadeIn {
+        from { opacity: 0; transform: translateY(20px); }
+        to { opacity: 1; transform: translateY(0); }
+      }
+      .animate-fade-in {
+        animation: fadeIn 0.8s ease-out forwards;
+      }
+      @keyframes floatSlow {
+        0% { transform: translateY(0); }
+        50% { transform: translateY(30px); }
+        100% { transform: translateY(0); }
+      }
+      @keyframes floatFast {
+        0% { transform: translateY(0); }
+        50% { transform: translateY(-20px); }
+        100% { transform: translateY(0); }
+      }
+      .animate-float-slow { animation: floatSlow 10s ease-in-out infinite; }
+      .animate-float-fast { animation: floatFast 6s ease-in-out infinite; }
+      
+      /* Smooth scrolling */
+      html {
+        scroll-behavior: smooth;
+      }
+      
+      /* Custom gradient text */
+      .gradient-text {
+        background: linear-gradient(135deg, #3b82f6, #1d4ed8);
+        -webkit-background-clip: text;
+        -webkit-text-fill-color: transparent;
+        background-clip: text;
+      }
+      
+      /* Glassmorphism effect */
+      .glass {
+        background: rgba(255, 255, 255, 0.1);
+        backdrop-filter: blur(10px);
+        border: 1px solid rgba(255, 255, 255, 0.2);
+      }
+    </style>
+  </head>
+  <body class="font-sans text-gray-800 bg-gray-50">
+    
+    <!-- Navigation Bar -->
+    <nav class="fixed top-0 left-0 w-full z-50 bg-gradient-to-r from-blue-900 via-blue-700 to-blue-400 bg-opacity-95 shadow-lg backdrop-blur-sm">
+      <div class="container mx-auto flex justify-between items-center py-4 px-6">
+        <a href="/" class="text-2xl font-extrabold text-white tracking-widest hover:text-blue-200 transition duration-300">Javier Villullas</a>
+        <ul class="flex space-x-8 text-lg font-semibold">
+          <li><a href="/#about" class="text-white hover:text-blue-200 transition duration-300">About</a></li>
+          <li><a href="/#experience" class="text-white hover:text-blue-200 transition duration-300">Experience</a></li>
+          <li><a href="/#skills" class="text-white hover:text-blue-200 transition duration-300">Skills</a></li>
+          <li><a href="/blog" class="text-blue-200 border-b-2 border-blue-200 transition duration-300">Blog</a></li>
+          <li><a href="/#contact" class="text-white hover:text-blue-200 transition duration-300">Contact</a></li>
+        </ul>
+      </div>
+      <div class="absolute left-0 right-0 h-1 bg-gradient-to-r from-blue-400 via-blue-200 to-blue-400 opacity-70"></div>
+    </nav>
+
+    <!-- Animated Background -->
+    <div class="fixed inset-0 -z-10 pointer-events-none">
+      <svg class="absolute top-0 left-0 w-full h-96 opacity-20 animate-float-slow" viewBox="0 0 1440 320">
+        <path fill="#60a5fa" fill-opacity="1" d="M0,160L60,170.7C120,181,240,203,360,197.3C480,192,600,160,720,133.3C840,107,960,85,1080,101.3C1200,117,1320,171,1380,197.3L1440,224L1440,0L1380,0C1320,0,1200,0,1080,0C960,0,840,0,720,0C600,0,480,0,360,0C240,0,120,0,60,0L0,0Z"></path>
+      </svg>
+      <svg class="absolute bottom-0 right-0 w-full h-80 opacity-15 animate-float-fast" viewBox="0 0 1440 320">
+        <path fill="#2563eb" fill-opacity="1" d="M0,288L60,272C120,256,240,224,360,197.3C480,171,600,149,720,154.7C840,160,960,192,1080,197.3C1200,203,1320,181,1380,170.7L1440,160L1440,320L1380,320C1320,320,1200,320,1080,320C960,320,840,320,720,320C600,320,480,320,360,320C240,320,120,320,60,320L0,320Z"></path>
+      </svg>
+    </div>
+
+    <main class="pt-20">
+      <slot />
+    </main>
+
+    <footer class="py-8 bg-gray-900 text-white text-center text-sm">
+      <p>&copy; 2025 Javier Villullas. All rights reserved.</p>
+    </footer>
+  </body>
+</html>
